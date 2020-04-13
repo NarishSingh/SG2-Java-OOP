@@ -11,13 +11,13 @@ import java.util.Scanner;
 public class GuessingGame {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Boolean guessing = true;
+        boolean guessing = true;
         int attempts = 0;
-        int numToGuess = (int) (Math.random() * 100 + 1);
+        int numToGuess = (int) (Math.random() * 99 + 1); //1-100
 
         System.out.println("Selecting a number from 1-100...");
-        System.out.println(numToGuess);
-        System.out.println("Enter guess:");
+//        System.out.println(numToGuess);
+        System.out.println("Enter guesses:");
 
         while (guessing) {
             attempts++;
