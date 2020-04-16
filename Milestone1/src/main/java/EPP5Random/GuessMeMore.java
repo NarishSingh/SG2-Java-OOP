@@ -18,17 +18,25 @@ public class GuessMeMore {
         System.out.println("For an integer between -100 and 100, guess my number: ");
         double compNum = Math.floor(rand.nextDouble() * (100 - (-100)) + (-100));
 
-        while (guessing) {
-            int userGuess = input.nextInt();
+        int userGuess = input.nextInt();
 
-            if (userGuess > compNum) {
-                System.out.println(userGuess + " is too high!");
-            } else if (userGuess < compNum) {
-                System.out.println(userGuess + " is too low!");
-            } else {
-                System.out.println(userGuess + " is right! You win!!!");
-                break;
-            }
+        if (userGuess > compNum) {
+            System.out.println(userGuess + " is too high!");
+        } else if (userGuess < compNum) {
+            System.out.println(userGuess + " is too low!");
+        } else {
+            System.out.println(userGuess + " is right! You win!!!");
+        }
+        
+        System.out.println("OK, one more try...");
+        userGuess = input.nextInt();
+
+        if (userGuess > compNum) {
+            System.out.println(userGuess + " is too high!");
+        } else if (userGuess < compNum) {
+            System.out.println(userGuess + " is too low!");
+        } else {
+            System.out.println(userGuess + " is right! You win!!!");
         }
     }
 
