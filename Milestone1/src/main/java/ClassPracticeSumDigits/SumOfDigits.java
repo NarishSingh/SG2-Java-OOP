@@ -11,23 +11,26 @@ import java.util.Scanner;
 public class SumOfDigits {
 
     public static void main(String[] args) {
-        Scanner input=new Scanner(System.in);
-        int sumOfDigits=0;
-        
+        Scanner input = new Scanner(System.in);
+        int sumOfDigits = 0;
+
         System.out.print("Enter a positive integer: ");
-        int userNum=input.nextInt();
-        int originalInput=userNum;
-        if (userNum<0) {
-            throw new IllegalArgumentException("Cannot process negative integer.");
+        int userNum = input.nextInt();
+        if (userNum < 0) {
+            throw new IllegalArgumentException("Cannot process negative integer, will return 0.");
         }
-        
-        while (userNum>0) {            
-            int digit=userNum%10;
-            sumOfDigits+=digit;
-            userNum/=10;
+
+        int userInput = userNum; //store for printing later
+
+        //algorithm: use %10 to return digit 
+        //then use /10 to chop off the rightmost digit
+        while (userNum > 0) {
+            int digit = userNum % 10;
+            sumOfDigits += digit;
+            userNum /= 10;
         }
-        
-        System.out.println("Sum of digits in " + originalInput + " = " + sumOfDigits);
+
+        System.out.println("Sum of digits in " + userInput + " = " + sumOfDigits);
     }
-    
+
 }
