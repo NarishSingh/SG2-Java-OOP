@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class DogGenetics {
 
     /**
-     * randomize 5 percentages and write to array
+     * randomize 5 percentages and write to an array
      *
-     * @return {int[]} int array where elements sum up to 100
+     * @return {int[]} int array where all elements sum up to 100
      */
     public static int[] breedMixNum() {
         Random rand = new Random();
@@ -35,66 +35,65 @@ public class DogGenetics {
     }
 
     /**
-     * randomize 5 breed names and write to array
+     * randomize 5 breed names and write to an array
      *
-     * @return {String[]} String array of dog breed names
+     * @return {String[]} String array of dog breeds
      */
-    public static String[] breedMixNames() {
-        Random rand2 = new Random();
-        String[] breedNames = new String[5];
+    public static String[] breedMixName() {
+        Random randChooser = new Random();
+        String[] breedName = new String[5];
 
-        for (int i = 0; i < breedNames.length; i++) {
-            int nameChoice = rand2.nextInt(10);
+        for (int i = 0; i < breedName.length; i++) {
+            int nameChoice = randChooser.nextInt(10);
 
             switch (nameChoice) {
                 case 0: {
-                    breedNames[i] = "St. Bernard";
+                    breedName[i] = "St. Bernard";
                     break;
                 }
                 case 1: {
-                    breedNames[i] = "Chihuahua";
+                    breedName[i] = "Chihuahua";
                     break;
                 }
                 case 2: {
-                    breedNames[i] = "Pug";
+                    breedName[i] = "Pug";
                     break;
                 }
                 case 3: {
-                    breedNames[i] = "Cur";
+                    breedName[i] = "Cur";
                     break;
                 }
                 case 4: {
-                    breedNames[i] = "Doberman";
+                    breedName[i] = "Doberman";
                     break;
                 }
                 case 5: {
-                    breedNames[i] = "Siberian Husky";
+                    breedName[i] = "Siberian Husky";
                     break;
                 }
                 case 6: {
-                    breedNames[i] = "Corgi";
+                    breedName[i] = "Corgi";
                     break;
                 }
                 case 7: {
-                    breedNames[i] = "Golden Retriever";
+                    breedName[i] = "Golden Retriever";
                     break;
                 }
                 case 8: {
-                    breedNames[i] = "Poodle";
+                    breedName[i] = "Poodle";
                     break;
                 }
                 case 9: {
-                    breedNames[i] = "Dalmatian";
+                    breedName[i] = "Dalmatian";
                     break;
                 }
                 default: {
-                    breedNames[i] = "***"; //dummy case, debug only
                     break;
                 }
             }
         }
 
-        return breedNames;
+        return breedName;
     }
 
     public static void main(String[] args) {
@@ -109,7 +108,7 @@ public class DogGenetics {
         System.out.println("Your genetics test for " + dogName + " is in!!!");
 
         int[] dogBreedPercents = breedMixNum();
-        String[] dogBreedNames = breedMixNames();
+        String[] dogBreedNames = breedMixName();
 
         for (int i = 0; i < BREED_LIMIT; i++) {
             System.out.println(dogBreedPercents[i] + "%" + " " + dogBreedNames[i]);
