@@ -1,7 +1,8 @@
 /*
-Write aprogra that takes user dog name
-generate fake DNA test for % of 5 breeds
-the 5 %'s should be randomized BUT must add up too 100
+Dog Genetics
+Author: Narish Singh
+Date Created: 4/20/20
+Last Modified: 4/20/20
  */
 package SummativeAssessment;
 
