@@ -1,17 +1,8 @@
 /*
-Rock Paper Scissors Game
--If both players choose the same thing = tie
--Paper wraps Rock to win
--Scissors cut Paper to win
--Rock breaks Scissors to win
-Ask how many rounds to play, min 1, max 10
--outside of range --> error and quit
-Ask player for choice, comp uses random value to choose
-Track ties, user wins, comp wins - print
-Declare winner based on rounds
-At end, ask to play again
--no="thanks for playing!"
--yes=restart game loop
+Rock, Paper, Scissors
+Author: Narish Singh
+Date Created: 4/20/20
+Last Modified: 4/20/20
  */
 package SummativeAssessment;
 
@@ -47,7 +38,7 @@ public class RockPaperScissors {
                 return "Scissors";
             }
             default: {
-                return "!!!"; //dummy case
+                return "!!!"; //dummy case, debug only
             }
         }
     }
@@ -74,7 +65,7 @@ public class RockPaperScissors {
                 return "Scissors";
             }
             default: {
-                return "@@@"; //dummy case
+                return "@@@"; //dummy case, debug only
             }
         }
     }
@@ -109,13 +100,13 @@ public class RockPaperScissors {
             System.out.println("Player's Scissors cuts Paper - Player Wins!");
             playerWins++;
         } else {
-            System.out.println("###"); //dummy
+            System.out.println("###"); //dummy case, debug only
         }
     }
 
     /**
      * Use win stats to determine game winner, with easter egg if more ties than
-     * either side winning
+     * either side's score
      */
     public static void declareWinner() {
         if (playerWins > compWins) {
@@ -132,8 +123,8 @@ public class RockPaperScissors {
     }
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        Scanner input2 = new Scanner(System.in);
+        Scanner playInput = new Scanner(System.in);
+        Scanner stringInput = new Scanner(System.in);
         boolean playing = false;
 
         System.out.println("Welcome to Rock, Paper, Scissors!!!");
@@ -144,11 +135,12 @@ public class RockPaperScissors {
             ties = 0;
 
             System.out.print("Enter number of rounds (1-10): ");
-            int rounds = input.nextInt();
+            int rounds = playInput.nextInt();
             if (rounds > 10 || rounds < 1) {
                 throw new IllegalArgumentException("Invalid round count. Terminating game...");
             }
 
+            /*GAMEPLAY LOOP*/
             for (int i = 0; i < rounds; i++) {
                 System.out.println("Round " + (i + 1));
                 System.out.println("1 - Rock");
@@ -156,7 +148,7 @@ public class RockPaperScissors {
                 System.out.println("3 - Scissor");
 
                 System.out.print("Player move: ");
-                int play = input.nextInt();
+                int play = playInput.nextInt();
                 String compPlay = compMove();
                 evaluateRound(play, compPlay);
 
@@ -164,11 +156,10 @@ public class RockPaperScissors {
             }
 
             System.out.println("Player Wins: " + playerWins + " | Computer Wins: " + compWins + " | Ties: " + ties);
-
             declareWinner();
 
             System.out.print("Play again? (y/n): ");
-            String playAgain = input2.nextLine();
+            String playAgain = stringInput.nextLine();
 //            playing = playAgain.equals("y");
             if (playAgain.equals("y")) {
                 System.out.println("*******");
@@ -178,7 +169,5 @@ public class RockPaperScissors {
                 playing = false;
             }
         } while (playing);
-
     }
-
 }
