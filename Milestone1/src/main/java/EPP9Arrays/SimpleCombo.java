@@ -1,14 +1,14 @@
-/**
- * combine into one large array
- */
+/*
+combine into one large array
+*/
 package EPP9Arrays;
 
 public class SimpleCombo {
 
     /**
      * Combine two arrays
-     * @param a - an array of ints
-     * @param b - an array of ints
+     * @param a {int[]} an array of ints
+     * @param b {int[]} an array of ints
      * @return {int[]} combined array, with b stuck to the end of a
      */
     public static int[] combineArrays(int[] a, int[] b) {
@@ -31,7 +31,10 @@ public class SimpleCombo {
         int[] firstHalf = {3, 7, 9, 10, 16, 19, 20, 34, 35, 45, 47, 49};
         int[] secondHalf = {51, 54, 68, 71, 75, 78, 82, 84, 85, 89, 91, 100};
 
-        int[] combinedArray = new int[24];
+        int firstLength=firstHalf.length;
+        int secondLength=secondHalf.length;
+        int combinedLength=firstLength+secondLength;
+        int[] combinedArray = new int[combinedLength]; //24
         combinedArray = combineArrays(firstHalf, secondHalf);
 
         for (int i = 0; i < combinedArray.length; i++) {
