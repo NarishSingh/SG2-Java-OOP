@@ -15,7 +15,7 @@ public class DogGenetics {
 
     /**
      * Process an array such that if any element contains 0, split the value of
-     * its neightbor i-1 down give half to each such that no element is 0
+     * its neighbor i-1 down give half to each such that no element is 0
      *
      * @param hasZeroes
      */
