@@ -14,12 +14,12 @@ public class DogGenetics {
     final static int BREED_LIMIT = 5;
 
     /**
-     * Process an array such that if any element contains 0, split the value of
-     * its neighbor i-1 down give half to each such that no element is 0
+     * Process an array such that if any element i contains 0, split the value
+     * of i-1 and give half to each such that no element in the array is 0
      *
-     * @param hasZeroes
+     * @param hasZeroes {int []} an array that has or may contain 0's
      */
-    public static void verifyArray(int[] hasZeroes) {
+    public static void processOutZeros(int[] hasZeroes) {
         for (int i = hasZeroes.length - 1; i > 0; i--) {
             if (hasZeroes[i] == 0 && hasZeroes[i - 1] != 0) {
                 int split = hasZeroes[i - 1] / 2;
@@ -49,7 +49,7 @@ public class DogGenetics {
             sumOfPercents += mix;
         }
 
-        //if doesn't add up to 100, dump remaining percent into 0 containing or last element
+        //if sum doesn't add up to 100, dump difference into a 0 containing, or final, element
         if (sumOfPercents != 100) {
             percentLeft--; //so it doesn't sum to 101
 
@@ -63,7 +63,7 @@ public class DogGenetics {
             breedPercents[breedPercents.length - 1] += percentLeft;
         }
 
-        verifyArray(breedPercents);
+        processOutZeros(breedPercents); //process so no zeros
 
         return breedPercents;
     }
