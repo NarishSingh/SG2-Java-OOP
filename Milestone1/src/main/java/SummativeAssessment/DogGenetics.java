@@ -21,16 +21,29 @@ public class DogGenetics {
     public static int[] breedMixNum() {
         Random rand = new Random();
         int[] breedPercents = new int[BREED_LIMIT];
-        int percentLeft = 100;
+        int sumOfPercents = 0;
+        int percentLeft = 101; //so random can generate 0-100 for percent
 
         for (int i = 0; i < breedPercents.length; i++) {
-            if (percentLeft <= 0) {
-                breedPercents[i] = 0;
-            } else {
-                int mix = rand.nextInt(percentLeft) + 1;
-                breedPercents[i] = mix;
-                percentLeft -= mix;
+            int mix = rand.nextInt(percentLeft) ;
+            breedPercents[i] = mix;
+            percentLeft -= mix;
+
+            sumOfPercents += mix;
+        }
+
+        //if doesn't add up to 100, dump remaining percent into 0 containing or last element
+        if (sumOfPercents != 100) {
+            percentLeft--; //so it doesn't sum to 101
+            
+            for (int i = 0; i < breedPercents.length; i++) {
+                if (breedPercents[i] == 0) {
+                    breedPercents[i] = percentLeft;
+                    percentLeft = 0;
+                }
             }
+
+            breedPercents[breedPercents.length - 1] += percentLeft;
         }
 
         return breedPercents;
@@ -40,11 +53,11 @@ public class DogGenetics {
      * randomize 5 breed names and write to an array, won't return the same
      * breed name twice
      *
-     * @return {String[]} String array of dog breeds
+     * @return {String[]} String array of dog breeds without repeats
      */
     public static String[] breedMixName() {
         Random randChooser = new Random();
-        final int breedSelection = 11;
+        final int breedSelection = 11; //double the limit + extra cases to sandbag
         boolean[] breedNameUsed = new boolean[breedSelection]; //all initialize false
         String[] breedName = new String[BREED_LIMIT];
 
@@ -141,6 +154,8 @@ public class DogGenetics {
                         breedNameUsed[10] = true;
                         break;
                     } else {
+                        breedName[i] = "Bulldog"; //no more fall through
+                        break;
                     }
                 }
                 default: {
@@ -155,13 +170,11 @@ public class DogGenetics {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("What is your pup's name?: ");
-        String dogName = input.nextLine();
-
+//        System.out.print("What is your pup's name?: ");
+//        String dogName = input.nextLine();
         System.out.println("Calculating breed mixture percentages...");
 
-        System.out.println("Your genetics test for " + dogName + " is in!!!");
-
+//        System.out.println("Your genetics test for " + dogName + " is in!!!");
         int[] dogBreedPercents = breedMixNum();
         String[] dogBreedNames = breedMixName();
 
