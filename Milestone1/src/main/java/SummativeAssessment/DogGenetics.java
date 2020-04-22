@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 public class DogGenetics {
 
+    final static int BREED_LIMIT = 5;
+
     /**
      * randomize 5 percentages and write to an array
      *
@@ -18,7 +20,7 @@ public class DogGenetics {
      */
     public static int[] breedMixNum() {
         Random rand = new Random();
-        int[] breedPercents = new int[5];
+        int[] breedPercents = new int[BREED_LIMIT];
         int percentLeft = 100;
 
         for (int i = 0; i < breedPercents.length; i++) {
@@ -35,57 +37,111 @@ public class DogGenetics {
     }
 
     /**
-     * randomize 5 breed names and write to an array
+     * randomize 5 breed names and write to an array, won't return the same
+     * breed name twice
      *
      * @return {String[]} String array of dog breeds
      */
     public static String[] breedMixName() {
         Random randChooser = new Random();
-        String[] breedName = new String[5];
+        final int breedSelection = 11;
+        boolean[] breedNameUsed = new boolean[breedSelection]; //all initialize false
+        String[] breedName = new String[BREED_LIMIT];
 
         for (int i = 0; i < breedName.length; i++) {
-            int nameChoice = randChooser.nextInt(10);
+            int nameChoice = randChooser.nextInt(breedSelection);
 
+            //if name unused, write to breedName
+            //otherwise fall through and use next case
             switch (nameChoice) {
                 case 0: {
-                    breedName[i] = "St. Bernard";
-                    break;
+                    if (!breedNameUsed[0]) {
+                        breedName[i] = "St. Bernard";
+                        breedNameUsed[0] = true;
+                        break;
+                    } else {
+                        //do nothin and fall through 
+                    }
                 }
                 case 1: {
-                    breedName[i] = "Chihuahua";
-                    break;
+                    if (!breedNameUsed[1]) {
+                        breedName[i] = "Chihuahua";
+                        breedNameUsed[1] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 2: {
-                    breedName[i] = "Pug";
-                    break;
+                    if (!breedNameUsed[2]) {
+                        breedName[i] = "Pug";
+                        breedNameUsed[2] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 3: {
-                    breedName[i] = "Cur";
-                    break;
+                    if (!breedNameUsed[3]) {
+                        breedName[i] = "Cur";
+                        breedNameUsed[3] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 4: {
-                    breedName[i] = "Doberman";
-                    break;
+                    if (!breedNameUsed[4]) {
+                        breedName[i] = "Doberman";
+                        breedNameUsed[4] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 5: {
-                    breedName[i] = "Siberian Husky";
-                    break;
+                    if (!breedNameUsed[5]) {
+                        breedName[i] = "Siberian Husky";
+                        breedNameUsed[5] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 6: {
-                    breedName[i] = "Corgi";
-                    break;
+                    if (!breedNameUsed[6]) {
+                        breedName[i] = "Corgi";
+                        breedNameUsed[6] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 7: {
-                    breedName[i] = "Golden Retriever";
-                    break;
+                    if (!breedNameUsed[7]) {
+                        breedName[i] = "Golden Retriever";
+                        breedNameUsed[7] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 8: {
-                    breedName[i] = "Poodle";
-                    break;
+                    if (!breedNameUsed[8]) {
+                        breedName[i] = "Poodle";
+                        breedNameUsed[8] = true;
+                        break;
+                    } else {
+                    }
                 }
                 case 9: {
-                    breedName[i] = "Dalmatian";
-                    break;
+                    if (!breedNameUsed[9]) {
+                        breedName[i] = "Dalmatian";
+                        breedNameUsed[9] = true;
+                        break;
+                    } else {
+                    }
+                }
+                case 10: {
+                    if (!breedNameUsed[10]) {
+                        breedName[i] = "German Shepherd";
+                        breedNameUsed[10] = true;
+                        break;
+                    } else {
+                    }
                 }
                 default: {
                     break;
@@ -98,7 +154,6 @@ public class DogGenetics {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        final int BREED_LIMIT = 5;
 
         System.out.print("What is your pup's name?: ");
         String dogName = input.nextLine();
