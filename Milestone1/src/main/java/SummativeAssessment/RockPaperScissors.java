@@ -2,7 +2,7 @@
 Rock, Paper, Scissors
 Author: Narish Singh
 Date Created: 4/20/20
-Last Modified: 4/20/20
+Last Modified: 4/22/20
  */
 package SummativeAssessment;
 
@@ -48,12 +48,9 @@ public class RockPaperScissors {
      *
      * @param choice {int} 1-3 based on user input
      * @return {String} Rock, Paper, Scissors respectively
+     * @throws IllegalArgumentException on invalid move
      */
     public static String playerMove(int choice) {
-        if (choice < 1 || choice > 3) {
-            throw new IllegalArgumentException("Invalid move. Terminating game...");
-        }
-
         switch (choice) {
             case 1: {
                 return "Rock";
@@ -65,7 +62,7 @@ public class RockPaperScissors {
                 return "Scissors";
             }
             default: {
-                return "@@@"; //dummy case, debug only
+                throw new IllegalArgumentException("Invalid move. Terminating game...");
             }
         }
     }
@@ -78,29 +75,19 @@ public class RockPaperScissors {
      * @param compMove {String} comp's random move
      */
     public static void evaluateRound(int move, String compMove) {
-        if (playerMove(move).equals(compMove)) {
+        boolean userWon = playerMove(move).equals("Rock") && compMove.equals("Scissors")
+                || playerMove(move).equals("Paper") && compMove.equals("Rock")
+                || playerMove(move).equals("Scissors") && compMove.equals("Paper");
+
+        if (userWon) {
+            System.out.println("Player's " + playerMove(move) + " beats Computer's " + compMove + " - Player Wins!");
+            playerWins++;
+        } else if (playerMove(move).equals(compMove)) {
             System.out.println("Tie!!!");
             ties++;
-        } else if (playerMove(move).equals("Rock") && compMove.equals("Paper")) {
-            System.out.println("Comp's Paper covers Rock - Computer Wins!");
-            compWins++;
-        } else if (playerMove(move).equals("Paper") && compMove.equals("Scissors")) {
-            System.out.println("Comp's Scissors cuts Paper - Computer Wins!");
-            compWins++;
-        } else if (playerMove(move).equals("Scissors") && compMove.equals("Rock")) {
-            System.out.println("Comp's Rock crushes Scissors - Computer Wins!");
-            compWins++;
-        } else if (playerMove(move).equals("Rock") && compMove.equals("Scissors")) {
-            System.out.println("Player's Rock crushes Scissors - Player Wins!");
-            playerWins++;
-        } else if (playerMove(move).equals("Paper") && compMove.equals("Rock")) {
-            System.out.println("Player's Paper covers Rock - Player Wins!");
-            playerWins++;
-        } else if (playerMove(move).equals("Scissors") && compMove.equals("Paper")) {
-            System.out.println("Player's Scissors cuts Paper - Player Wins!");
-            playerWins++;
         } else {
-            System.out.println("###"); //dummy case, debug only
+            System.out.println("Computer's " + compMove + " beats Player's " + playerMove(move) + " - Computer Wins!");
+            compWins++;
         }
     }
 
@@ -160,7 +147,6 @@ public class RockPaperScissors {
 
             System.out.print("Play again? (y/n): ");
             String playAgain = stringInput.nextLine();
-//            playing = playAgain.equals("y");
             if (playAgain.equals("y")) {
                 System.out.println("*******");
                 playing = true;
