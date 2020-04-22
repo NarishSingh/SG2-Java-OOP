@@ -14,7 +14,23 @@ public class DogGenetics {
     final static int BREED_LIMIT = 5;
 
     /**
-     * randomize 5 percentages and write to an array
+     * Process an array such that if any element contains 0, split the value of
+     * its neightbor i-1 down give half to each such that no element is 0
+     *
+     * @param hasZeroes
+     */
+    public static void verifyArray(int[] hasZeroes) {
+        for (int i = hasZeroes.length - 1; i > 0; i--) {
+            if (hasZeroes[i] == 0 && hasZeroes[i - 1] != 0) {
+                int split = hasZeroes[i - 1] / 2;
+                hasZeroes[i - 1] /= 2;
+                hasZeroes[i] = split;
+            }
+        }
+    }
+
+    /**
+     * randomize 5 percentages and write to an array, with all percentages >0
      *
      * @return {int[]} int array where all elements sum up to 100
      */
@@ -22,10 +38,11 @@ public class DogGenetics {
         Random rand = new Random();
         int[] breedPercents = new int[BREED_LIMIT];
         int sumOfPercents = 0;
+
         int percentLeft = 101; //so random can generate 0-100 for percent
 
         for (int i = 0; i < breedPercents.length; i++) {
-            int mix = rand.nextInt(percentLeft) ;
+            int mix = rand.nextInt(percentLeft);
             breedPercents[i] = mix;
             percentLeft -= mix;
 
@@ -35,7 +52,7 @@ public class DogGenetics {
         //if doesn't add up to 100, dump remaining percent into 0 containing or last element
         if (sumOfPercents != 100) {
             percentLeft--; //so it doesn't sum to 101
-            
+
             for (int i = 0; i < breedPercents.length; i++) {
                 if (breedPercents[i] == 0) {
                     breedPercents[i] = percentLeft;
@@ -45,6 +62,8 @@ public class DogGenetics {
 
             breedPercents[breedPercents.length - 1] += percentLeft;
         }
+
+        verifyArray(breedPercents);
 
         return breedPercents;
     }
@@ -170,11 +189,11 @@ public class DogGenetics {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-//        System.out.print("What is your pup's name?: ");
-//        String dogName = input.nextLine();
+        System.out.print("What is your pup's name?: ");
+        String dogName = input.nextLine();
         System.out.println("Calculating breed mixture percentages...");
 
-//        System.out.println("Your genetics test for " + dogName + " is in!!!");
+        System.out.println("Your genetics test for " + dogName + " is in!!!");
         int[] dogBreedPercents = breedMixNum();
         String[] dogBreedNames = breedMixName();
 
