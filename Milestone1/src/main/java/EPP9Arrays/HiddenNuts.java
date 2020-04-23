@@ -1,7 +1,3 @@
-/**
- * find the nut for the squirrel
- * Giving a null pointer exception...need to figure out why
- */
 package EPP9Arrays;
 
 import java.util.Random;
@@ -14,9 +10,9 @@ public class HiddenNuts {
         hidingSpots[squirrel.nextInt(hidingSpots.length)] = "Nut";
         System.out.println("The nut has been hidden ...");
 
-        // Nut finding code should go here! 
+        //find the nut for the squirrel
         for (int i = 0; i < hidingSpots.length; i++) {
-            if (hidingSpots[i].equals("Nut")) {
+            if ("Nut".equals(hidingSpots[i])) {
                 System.out.println("Hey Squirrel! Your nut is at spot #" + i + " you nitwit!");
                 break;
             }
