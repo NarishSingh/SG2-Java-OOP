@@ -1,7 +1,7 @@
 /*
 Model a car as if the class were to be part of a video game.
 */
-package ClassModeling;
+package ExClassModeling;
 
 public class CarGame {
     /*fields*/

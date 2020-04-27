@@ -1,7 +1,7 @@
 /*
 -Model a house as if were to be part of a GPS mapping system.
  */
-package ClassModeling;
+package ExClassModeling;
 
 public class HouseGPS {
 

@@ -1,7 +1,7 @@
 /*
 -Model a house as if the class were to be part of a 3-D design system.
  */
-package ClassModeling;
+package ExClassModeling;
 
 public class House3Dblueprint {
 

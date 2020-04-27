@@ -1,9 +1,10 @@
 /*
 Model a car as if the class were to be part of an inventory system for a car dealership.
-*/
-package ClassModeling;
+ */
+package ExClassModeling;
 
 public class CarInventory {
+
     /*fields*/
     private int carID;
     private String model;
@@ -11,8 +12,8 @@ public class CarInventory {
     private String color;
     private double cost;
     private String[] carParts;
-    private static final int MAX_HOLD=0; //max capacity of dealership
-    
+    private static final int MAX_HOLD = 0; //max capacity of dealership
+
     /*ctors*/
     public CarInventory() {
         //default
@@ -22,7 +23,7 @@ public class CarInventory {
         this.model = model;
         this.modelYear = modelYear;
     }
-    
+
     public CarInventory(int carID, String model, int modelYear, String color, double cost) {
         this.carID = carID;
         this.model = model;
@@ -30,7 +31,7 @@ public class CarInventory {
         this.color = color;
         this.cost = cost;
     }
-    
+
     /*get/set*/
     public int getCarID() {
         return carID;

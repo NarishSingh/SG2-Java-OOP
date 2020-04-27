@@ -1,7 +1,7 @@
 /*
 Model an airplane as if the class were to be part of an air traffic control system.
  */
-package ClassModeling;
+package ExClassModeling;
 
 public class AirplaneAirTraffic {
 
@@ -139,11 +139,10 @@ public class AirplaneAirTraffic {
     public static void setPassengersOnRoute(int passengersOnRoute) {
         AirplaneAirTraffic.passengersOnRoute = passengersOnRoute;
     }
-    
+
     /*behaviors*/
     //calculate amount of fuel needed
     //calculate optimal fly height given weather conditions
     //calculate optimal speed for flights to keep planes spaced out
     //calculate number of planes needed to service passengers
-    
 }

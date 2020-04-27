@@ -1,20 +1,21 @@
 /*
 Model an airplane as if the class were to be part of a flight simulator.
-*/
-package ClassModeling;
+ */
+package ExClassModeling;
 
 public class AirplaneFlightSim {
+
     /*fields*/
     private String model;
     private double fuelTank;
     private double maxSpeed;
     private double currentSpeed;
-    private static final double MAX_REGULATION_SPEED=0; //legally allowed, not dependent on model
+    private static final double MAX_REGULATION_SPEED = 0; //legally allowed, not dependent on model
     private double maxAccel;
     private double currentAccel;
     private double currentFlightHeight;
-    private static final double MAX_SAFE_HEIGHT=0; //max flight height for safety, not depedent on model
-    
+    private static final double MAX_SAFE_HEIGHT = 0; //max flight height for safety, not depedent on model
+
     /*ctors*/
     public AirplaneFlightSim() {
         //default
@@ -25,7 +26,7 @@ public class AirplaneFlightSim {
         this.maxSpeed = maxSpeed;
         this.maxAccel = maxAccel;
     }
-    
+
     /*get/set*/
     public String getModel() {
         return model;
@@ -42,7 +43,7 @@ public class AirplaneFlightSim {
     public void setFuelTank(double fuelTank) {
         this.fuelTank = fuelTank;
     }
-    
+
     public double getMaxSpeed() {
         return maxSpeed;
     }
@@ -88,5 +89,4 @@ public class AirplaneFlightSim {
     //calculate how long before plane runs out of fuel
     //calculate difference between current speed and max allowed speed
     //calculate difference between current height and max allowed height
-    
 }
