@@ -25,15 +25,14 @@ public class LSGame {
         return bank;
     }
 
-    //FIXME works without the if-else, crashes if it has it
     public void setBank(double bank) {
-//        if (bank > 0) {
+        if (bank > 0) {
             this.bank = bank;
-//        } else {
-//            throw new IllegalArgumentException("Invalid bet amount.");
-//        }
+        } else {
+            throw new IllegalArgumentException("Invalid bet amount.");
+        }
     }
-    
+
     public int getRollCt() {
         return rollCt;
     }
@@ -89,16 +88,24 @@ public class LSGame {
      * @param playerRoll {int} 2-12, sum of 2 dice
      */
     public void evaluateRoll(int playerRoll) {
-        //FIXME not tracking rolls
+        //FIXME Prof Palm's prescribed way not working
         switch (playerRoll) {
             case 7: {
+                /*
                 setBank(this.bank + WIN);
                 setRollCt(this.rollCt++);
+                 */
+                this.bank += WIN;
+                this.rollCt++;
                 break;
             }
             default: {
+                /*
                 setBank(this.bank - LOSS);
                 setRollCt(this.rollCt++);
+                 */
+                this.bank -= LOSS;
+                this.rollCt++;
                 break;
             }
         }
