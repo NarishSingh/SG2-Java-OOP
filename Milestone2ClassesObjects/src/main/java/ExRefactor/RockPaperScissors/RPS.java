@@ -1,28 +1,53 @@
-/*
-Rock, Paper, Scissors
-Author: Narish Singh
-Date Created: 4/20/20
-Last Modified: 4/22/20
- */
 package ExRefactor.RockPaperScissors;
 
 import java.util.Random;
-import java.util.Scanner;
 
-public class RockPaperScissors {
+public class RPS {
 
-    /*Global Vars*/
-    public static int playerWins;
-    public static int compWins;
-    public static int ties;
+    /*fields*/
+    private int playerWins;
+    private int compWins;
+    private int ties;
 
-    /*Methods*/
+    /*ctors*/
+    public RPS() {
+        this.playerWins = 0;
+        this.compWins = 0;
+        this.ties = 0;
+    }
+
+    /*getter/setters*/
+    public int getPlayerWins() {
+        return playerWins;
+    }
+
+    public void setPlayerWins(int playerWins) {
+        this.playerWins = playerWins;
+    }
+
+    public int getCompWins() {
+        return compWins;
+    }
+
+    public void setCompWins(int compWins) {
+        this.compWins = compWins;
+    }
+
+    public int getTies() {
+        return ties;
+    }
+
+    public void setTies(int ties) {
+        this.ties = ties;
+    }
+
+    /*behaviors*/
     /**
      * Use a random int to decide comp move
      *
      * @return {String} Rock, Paper, Scissors
      */
-    public static String compMove() {
+    public String compMove() {
         Random rand = new Random();
 
         int compPlay = rand.nextInt(3);
@@ -50,7 +75,7 @@ public class RockPaperScissors {
      * @return {String} Rock, Paper, Scissors respectively
      * @throws IllegalArgumentException on invalid move
      */
-    public static String playerMove(int choice) {
+    public String playerMove(int choice) {
         switch (choice) {
             case 1: {
                 return "Rock";
@@ -74,20 +99,20 @@ public class RockPaperScissors {
      *                 then compared to compMove()
      * @param compMove {String} comp's random move
      */
-    public static void evaluateRound(int move, String compMove) {
+    public void evaluateRound(int move, String compMove) {
         boolean userWon = playerMove(move).equals("Rock") && compMove.equals("Scissors")
                 || playerMove(move).equals("Paper") && compMove.equals("Rock")
                 || playerMove(move).equals("Scissors") && compMove.equals("Paper");
 
         if (userWon) {
             System.out.println("Player's " + playerMove(move) + " beats Computer's " + compMove + " - Player Wins!");
-            playerWins++;
+            this.playerWins++;
         } else if (playerMove(move).equals(compMove)) {
             System.out.println("Tie!!!");
-            ties++;
+            this.ties++;
         } else {
             System.out.println("Computer's " + compMove + " beats Player's " + playerMove(move) + " - Computer Wins!");
-            compWins++;
+            this.compWins++;
         }
     }
 
@@ -95,65 +120,17 @@ public class RockPaperScissors {
      * Use win stats to determine game winner, with easter egg if more ties than
      * either side's score
      */
-    public static void declareWinner() {
-        if (playerWins > compWins) {
+    public void declareWinner() {
+        if (getPlayerWins() > getCompWins()) {
             System.out.println("!!!PLAYER WINS THE GAME!!!");
-        } else if (playerWins < compWins) {
+        } else if (getPlayerWins() < getCompWins()) {
             System.out.println("Comp wins the game...better luck next time!");
         } else {
             System.out.println("Player and Comp are tied after rounds.");
         }
 
-        if (ties > playerWins && ties > compWins) {
+        if (getTies() > getPlayerWins() && getTies() > getCompWins()) {
             System.out.println("A hard battle...");
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner playInput = new Scanner(System.in);
-        Scanner stringInput = new Scanner(System.in);
-        boolean playing = false;
-
-        System.out.println("Welcome to Rock, Paper, Scissors!!!");
-
-        do {
-            playerWins = 0;
-            compWins = 0;
-            ties = 0;
-
-            System.out.print("Enter number of rounds (1-10): ");
-            int rounds = playInput.nextInt();
-            if (rounds > 10 || rounds < 1) {
-                throw new IllegalArgumentException("Invalid round count. Terminating game...");
-            }
-
-            /*GAMEPLAY LOOP*/
-            for (int i = 0; i < rounds; i++) {
-                System.out.println("Round " + (i + 1));
-                System.out.println("1 - Rock");
-                System.out.println("2 - Paper");
-                System.out.println("3 - Scissor");
-
-                System.out.print("Player move: ");
-                int play = playInput.nextInt();
-                String compPlay = compMove();
-                evaluateRound(play, compPlay);
-
-                System.out.println("-------");
-            }
-
-            System.out.println("Player Wins: " + playerWins + " | Computer Wins: " + compWins + " | Ties: " + ties);
-            declareWinner();
-
-            System.out.print("Play again? (y/n): ");
-            String playAgain = stringInput.nextLine();
-            if (playAgain.equals("y")) {
-                System.out.println("*******");
-                playing = true;
-            } else {
-                System.out.println("Thanks for playing!!!");
-                playing = false;
-            }
-        } while (playing);
     }
 }
