@@ -8,7 +8,7 @@ public abstract class Shape {
     protected double area;
     protected double perimeter;
 
-    abstract public double getArea();
+    abstract protected double getArea();
 
-    abstract public double getPerimeter();
+    abstract protected double getPerimeter();
 }
