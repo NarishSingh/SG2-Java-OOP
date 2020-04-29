@@ -2,7 +2,7 @@
 Rock, Paper, Scissors
 Author: Narish Singh
 Date Created: 4/20/20
-Last Modified: 4/22/20
+Last Modified: 4/29/20
  */
 package SummativeAssessment;
 
@@ -68,25 +68,26 @@ public class RockPaperScissors {
     }
 
     /**
-     * evaluate the round - print outcome and add to respective win/tie tally
+     * evaluate the round by comparing the player and comp moves as Strings -
+     * print outcome and add 1 to respective win or tie count
      *
-     * @param move     {int} converted to string using playerMove(int choice),
-     *                 then compared to compMove()
+     * @param move     {int} converted to string using playerMove(int choice)
      * @param compMove {String} comp's random move
      */
     public static void evaluateRound(int move, String compMove) {
-        boolean userWon = playerMove(move).equals("Rock") && compMove.equals("Scissors")
-                || playerMove(move).equals("Paper") && compMove.equals("Rock")
-                || playerMove(move).equals("Scissors") && compMove.equals("Paper");
+        String playerMove=playerMove(move);
+        boolean userWon = playerMove.equals("Rock") && compMove.equals("Scissors")
+                || playerMove.equals("Paper") && compMove.equals("Rock")
+                || playerMove.equals("Scissors") && compMove.equals("Paper");
 
         if (userWon) {
-            System.out.println("Player's " + playerMove(move) + " beats Computer's " + compMove + " - Player Wins!");
+            System.out.println("Player's " + playerMove + " beats Computer's " + compMove + " - Player Wins!");
             playerWins++;
-        } else if (playerMove(move).equals(compMove)) {
+        } else if (playerMove.equals(compMove)) {
             System.out.println("Tie!!!");
             ties++;
         } else {
-            System.out.println("Computer's " + compMove + " beats Player's " + playerMove(move) + " - Computer Wins!");
+            System.out.println("Computer's " + compMove + " beats Player's " + playerMove + " - Computer Wins!");
             compWins++;
         }
     }
