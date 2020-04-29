@@ -49,7 +49,7 @@ public class DogGenetics {
             sumOfPercents += mix;
         }
 
-        //if sum doesn't add up to 100, dump difference into a 0 containing, or final, element
+        //if sum != 100, dump difference into a 0-containing, or final, element
         if (sumOfPercents != 100) {
             percentLeft--; //so it doesn't sum to 101
 
@@ -63,27 +63,27 @@ public class DogGenetics {
             breedPercents[breedPercents.length - 1] += percentLeft;
         }
 
-        processOutZeros(breedPercents); //process so no zeros
+        processOutZeros(breedPercents); //sift values so no zeroes
 
         return breedPercents;
     }
 
     /**
-     * randomize 5 breed names and write to an array, won't return the same
-     * breed name twice
+     * randomize 5 breed names and write to an array, very high chance won't
+     * return the same breed name twice
      *
-     * @return {String[]} String array of dog breeds without repeats
+     * @return {String[]} String array of dog breeds, likely without repeats
      */
     public static String[] breedMixName() {
         Random randChooser = new Random();
-        final int breedSelection = 11; //double the limit + extra cases to sandbag
+        final int breedSelection = 11;
         boolean[] breedNameUsed = new boolean[breedSelection]; //all initialize false
         String[] breedName = new String[BREED_LIMIT];
 
         for (int i = 0; i < breedName.length; i++) {
             int nameChoice = randChooser.nextInt(breedSelection);
 
-            //if name unused, write to breedName
+            //if name unused, write to breedName and check as used with boolean
             //otherwise fall through and use next case
             switch (nameChoice) {
                 case 0: {
