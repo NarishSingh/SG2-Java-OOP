@@ -73,11 +73,42 @@ public class QuizScores {
                     break;
                 }
                 case 5: { //avg score for student
+                    double studentQuizSum = 0; //double so avg can be double
+                    int studentQuizCount = 0;
 
+                    String name = io.readString("Enter student's full name: ");
+                    List<Integer> studentQuizList = course.get(name);
+                    for (Integer q : studentQuizList) {
+                        studentQuizSum += q;
+                        studentQuizCount++;
+                    }
+                    
+                    double studentAvg=studentQuizSum / studentQuizCount;
+                    System.out.println("Student Average = " + studentAvg + "%");
                     break;
                 }
                 case 6: { //course avg
+                    double courseQuizSum = 0; //double so avg can be double
+                    int courseQuizCount = 0;
 
+                    for (String s : studentList) {
+                        double studentQuizSum = 0;
+                        int studentQuizCount = 0;
+
+                        //get singular student total
+                        List<Integer> studentQuizList = course.get(s);
+                        for (Integer q : studentQuizList) {
+                            studentQuizSum += q;
+                            studentQuizCount++;
+                        }
+
+                        //add student totals to course totals
+                        courseQuizSum += studentQuizSum;
+                        courseQuizCount += studentQuizCount;
+                    }
+                    
+                    double courseAvg=courseQuizSum / courseQuizCount;
+                    System.out.println("Class Average = " + courseAvg + "%");
                     break;
                 }
                 case 7: { //top student
