@@ -1,13 +1,10 @@
 package ExSimpleCalculatorInterfaceRefactor;
 
-import java.util.Scanner;
-
 public class Calculations2 {
 
     /*fields*/
     private double firstNum;
     private double secondNum;
-    public UserIOImpl io;
 
     /*ctor*/
     public Calculations2() {
@@ -69,20 +66,15 @@ public class Calculations2 {
     }
 
     /**
-     * get user inputs and set them to firstNum and secondNum
-     * Refactored to utilize UserIO implemented class
+     * get user inputs and set them to firstNum and secondNum Refactored to
+     * utilize UserIO implemented class
      */
     public void userNums() {
-//        Scanner input = new Scanner(System.in);
-
-//        System.out.print("Enter first number: ");
-//        double a = input.nextDouble();
-        double a=io.readDouble("Enter first number: ");
+        UserIOImpl io = new UserIOImpl();
+        double a = io.readDouble("Enter first number: ");
         setFirstNum(a);
 
-//        System.out.print("Enter second number: ");
-//        double b = input.nextDouble();
-        double b=io.readDouble("Enter second number: ");
+        double b = io.readDouble("Enter second number: ");
         setSecondNum(b);
     }
 
