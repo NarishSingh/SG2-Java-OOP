@@ -15,6 +15,8 @@ public class App {
         Car toyotaCarmy = new Car("Camry", "Red", 125, false, "Toyota", 1998, 4, true, 15);
 //        Car ferrariEnzo=new Car("Enzo", "Red", 225, false, "Ferrari", 2005, 4, true);
         Car ferrariEnzo = new Car(60, "Enzo", "Red", 240);
+        
+        Plane bob=new Plane(false, 0, 150, "Bob", "Purple", 5000);
 
         toyotaCarmy.gas();
         toyotaCarmy.gas();
@@ -27,6 +29,9 @@ public class App {
         ferrariEnzo.gas();
         ferrariEnzo.gas();
         ferrariEnzo.brake();
+        
+        bob.takeoff();
+        bob.land();
     }
 
 }
