@@ -2,8 +2,6 @@ package RPGInventoryCodeAlong;
 
 public class Potion extends Item {
 
-    /*fields*/
-
     /*ctor*/
     public Potion(double cost, double weight) {
         super(cost, weight); //calls the superclass's ctor
@@ -13,5 +11,4 @@ public class Potion extends Item {
     public void drink() {
         System.out.println("The hero sipped the potion.");
     }
-
 }

@@ -2,7 +2,6 @@ package RPGInventoryCodeAlong;
 
 public class HealingPotion extends Potion {
 
-    /*fields*/
     /*ctor*/
     public HealingPotion(double cost, double weight) {
         super(cost, weight);
