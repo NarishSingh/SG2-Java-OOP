@@ -7,7 +7,6 @@ public class Car extends Vehicle {
     private double accel;
 
     /*ctor*/
-
     public Car(double accel, String name, String color, double maxSpeed) {
         super(name, color, maxSpeed);
         this.accel = accel;
@@ -29,15 +28,6 @@ public class Car extends Vehicle {
     }
 
     /*behaviors*/
- /*
-    @Override
-    public void move() {
-        super.move();
-        double accel = 10;
-        setCurrentSpeed(this.currentSpeed+accel);
-    }
-     */
-    
     @Override
     public void gas() {
         super.gas();
@@ -53,5 +43,4 @@ public class Car extends Vehicle {
         
         System.out.println("Your " + getName() + " is moving at " + getCurrentSpeed() + "MPH");
     }
-
 }

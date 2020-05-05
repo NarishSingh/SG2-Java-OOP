@@ -1,6 +1,6 @@
 package VehicleCodeAlong;
 
-public class Vehicle {
+public class Vehicle implements Move {
 
     /*fields*/
     private String brand;
@@ -107,10 +107,12 @@ public class Vehicle {
     }
 
     /*methods*/
+    @Override
     public void gas(){
         setIsMoving(true);
     }
     
+    @Override
     public void brake(){
         setIsMoving(false);
     }
