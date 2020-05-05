@@ -12,15 +12,16 @@ public class App {
         Vehicle v = new Vehicle("Generic Car", "White", 50);
         v.gas();
 
-        Car toyotaCarmy = new Car("Camry", "Red", 125, false, "Toyota", 1998, 4, true, 15);
+//        Car toyotaCamry = new Car("Camry", "Red", 125, false, "Toyota", 1998, 4, true, 15);
+        Car toyotaCamry = new Car(15, "Camry", "Blue", 150);
         Car ferrariEnzo = new Car(60, "Enzo", "Red", 240);
         
-        Plane bob=new Plane(false, 0, 150, "Bob", "Purple", 5000);
+        Plane bob=new Plane(500, "Bob", "Blue", 1000);
 
-        toyotaCarmy.gas();
-        toyotaCarmy.gas();
-        toyotaCarmy.gas();
-        toyotaCarmy.brake();
+        toyotaCamry.gas();
+        toyotaCamry.gas();
+        toyotaCamry.gas();
+        toyotaCamry.brake();
         
         ferrariEnzo.gas();
         ferrariEnzo.gas();

@@ -9,12 +9,14 @@ public class Car extends Vehicle {
     /*ctor*/
     public Car(double accel, String name, String color, double maxSpeed) {
         super(name, color, maxSpeed);
+        this.isMoving=false;
         this.accel = accel;
     }
     
     
-    public Car(String name, String color, double maxSpeed, boolean isMoving, String brand, int modelYear, int numOfWheel, boolean hasInterior, double accel) {
-        super(name, color, maxSpeed, isMoving, brand, modelYear, numOfWheel, hasInterior);
+    public Car(String name, String color, double maxSpeed, String brand, int modelYear, double accel) {
+        super(name, color, maxSpeed);
+        this.isMoving=false;
         this.accel=accel;
     }
 

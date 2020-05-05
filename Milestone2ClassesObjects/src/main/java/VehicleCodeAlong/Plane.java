@@ -8,10 +8,9 @@ public class Plane extends Vehicle {
     private double accel;
 
     /*ctor*/
-    public Plane(boolean isFlying, double currentSpeed, double accel, String name, String color, double maxSpeed) {
+    public Plane(double accel, String name, String color, double maxSpeed) {
         super(name, color, maxSpeed);
-        this.isFlying = isFlying;
-        this.currentSpeed = currentSpeed;
+        this.isFlying = false;
         this.accel = accel;
     }
 
@@ -44,11 +43,13 @@ public class Plane extends Vehicle {
     /*behaviors*/
     public void takeoff(){
         super.gas();
+        this.setIsFlying(true);
         System.out.println("The plane " + getName() + " has taken off!");
     }
     
     public void land(){
         super.brake();
+        this.setIsFlying(false);
         System.out.println("The plane " + getName() + " has landed!");
     }
     
