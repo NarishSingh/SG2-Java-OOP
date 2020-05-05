@@ -4,6 +4,8 @@ Item like in an RPG management system
  */
 package RPGInventoryCodeAlong;
 
+import java.util.*;
+
 public class App {
 
     public static void main(String[] args) {
@@ -40,6 +42,29 @@ public class App {
         NPC potionShop = new ShopKeeper();
         potionShop.talk();
         potionShop.showInventory();
+
+        //Map
+        Map<Integer, Item> itemInventory = new HashMap<>();
+
+        //some id's
+        Item i3 = new Item(15.0, 1.0);
+        i3.setId(0);
+        Item i4 = new Item(15.0, 1.0);
+        i4.setId(1);
+        Item i5 = new Item(15.0, 1.0);
+        i5.setId(2);
+
+//        itemInventory.put(0, new Item(15.0, 1.0));
+        itemInventory.put(i3.id, i3);
+        itemInventory.put(i4.id, i4);
+        itemInventory.put(i5.id, i5);
+
+        Set keys = itemInventory.keySet();
+        
+        ArrayList<Item> itemList=new ArrayList();
+        for (Object key : keys) {
+            itemList.add(itemInventory.get(key));
+        }
     }
 
 }

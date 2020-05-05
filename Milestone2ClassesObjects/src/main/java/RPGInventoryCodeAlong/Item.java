@@ -6,12 +6,13 @@ package RPGInventoryCodeAlong;
 public class Item {
 
     /*fields - protected as this will be the superclass*/
+    protected Integer id; //for HashhMap
     protected double cost;
     protected double weight;
 
     /*ctor*/
     public Item() {
-
+        //d.ctor
     }
 
     public Item(double cost, double weight) {
@@ -34,6 +35,14 @@ public class Item {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }
