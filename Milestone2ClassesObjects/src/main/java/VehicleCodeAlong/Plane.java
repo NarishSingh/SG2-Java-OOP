@@ -15,7 +15,7 @@ public class Plane extends Vehicle {
         this.accel = accel;
     }
 
-    /*g/s*/
+    /*getters/setters*/
     public boolean isIsFlying() {
         return isFlying;
     }

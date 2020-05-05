@@ -1,16 +1,19 @@
+/*
+Superclass
+*/
 package VehicleCodeAlong;
 
 public class Vehicle implements Move {
 
-    /*fields*/
-    private String brand;
-    private int modelYear;
+    /*fields - protected so it can be inherited*/
+    protected String brand;
+    protected int modelYear;
     protected String name;
     protected String color;
     protected double maxSpeed;
     protected boolean isMoving;
-    private int numOfWheel;
-    private boolean hasInterior;
+    protected int numOfWheel;
+    protected boolean hasInterior;
     
     /*ctor*/
     public Vehicle() {
