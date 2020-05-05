@@ -3,12 +3,12 @@ package VehicleCodeAlong;
 public class Vehicle {
 
     /*fields*/
+    private String brand;
+    private int modelYear;
     protected String name;
     protected String color;
     protected double maxSpeed;
     protected boolean isMoving;
-    private String brand;
-    private String modelYear;
     private int numOfWheel;
     private boolean hasInterior;
     
@@ -30,7 +30,7 @@ public class Vehicle {
         this.isMoving = isMoving;
     }
 
-    public Vehicle(String name, String color, double maxSpeed, boolean isMoving, String brand, String modelYear, int numOfWheel, boolean hasInterior) {
+    public Vehicle(String name, String color, double maxSpeed, boolean isMoving, String brand, int modelYear, int numOfWheel, boolean hasInterior) {
         this.name = name;
         this.color = color;
         this.maxSpeed = maxSpeed;
@@ -82,11 +82,11 @@ public class Vehicle {
         this.brand = brand;
     }
 
-    public String getModelYear() {
+    public int getModelYear() {
         return modelYear;
     }
 
-    public void setModelYear(String modelYear) {
+    public void setModelYear(int modelYear) {
         this.modelYear = modelYear;
     }
 
@@ -107,11 +107,11 @@ public class Vehicle {
     }
 
     /*methods*/
-    public void move(){
+    public void gas(){
         setIsMoving(true);
     }
     
-    public void stopMoving(){
+    public void brake(){
         setIsMoving(false);
     }
 }
