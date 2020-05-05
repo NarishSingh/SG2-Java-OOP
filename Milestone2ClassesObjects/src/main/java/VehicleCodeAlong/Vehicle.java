@@ -1,6 +1,6 @@
 /*
 Superclass
-*/
+ */
 package VehicleCodeAlong;
 
 public class Vehicle implements Move {
@@ -12,7 +12,7 @@ public class Vehicle implements Move {
     protected String color;
     protected double maxSpeed;
     protected boolean isMoving;
-    
+
     /*ctor*/
     public Vehicle() {
         //d.ctor
@@ -23,7 +23,7 @@ public class Vehicle implements Move {
         this.color = color;
         this.maxSpeed = maxSpeed;
     }
-    
+
     public Vehicle(String name, String color, double maxSpeed, boolean isMoving) {
         this.name = name;
         this.color = color;
@@ -39,7 +39,7 @@ public class Vehicle implements Move {
         this.brand = brand;
         this.modelYear = modelYear;
     }
-    
+
     /*getter/setter*/
     public String getName() {
         return name;
@@ -87,12 +87,12 @@ public class Vehicle implements Move {
 
     /*methods*/
     @Override
-    public void gas(){
+    public void gas() {
         setIsMoving(true);
     }
-    
+
     @Override
-    public void brake(){
+    public void brake() {
         setIsMoving(false);
     }
 }

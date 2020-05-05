@@ -1,7 +1,7 @@
 package VehicleCodeAlong;
 
 public class Plane extends Vehicle {
-    
+
     /*fields*/
     private boolean isFlying;
     private double currentSpeed;
@@ -18,36 +18,35 @@ public class Plane extends Vehicle {
     public boolean isIsFlying() {
         return isFlying;
     }
-
+    
     public void setIsFlying(boolean isFlying) {
         this.isFlying = isFlying;
     }
-
+    
     public double getCurrentSpeed() {
         return currentSpeed;
     }
-
+    
     public void setCurrentSpeed(double currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
-
+    
     public double getAccel() {
         return accel;
     }
-
+    
     public void setAccel(double accel) {
         this.accel = accel;
     }
-    
-    
+
     /*behaviors*/
-    public void takeoff(){
+    public void takeoff() {
         super.gas();
         this.setIsFlying(true);
         System.out.println("The plane " + getName() + " has taken off!");
     }
     
-    public void land(){
+    public void land() {
         super.brake();
         this.setIsFlying(false);
         System.out.println("The plane " + getName() + " has landed!");

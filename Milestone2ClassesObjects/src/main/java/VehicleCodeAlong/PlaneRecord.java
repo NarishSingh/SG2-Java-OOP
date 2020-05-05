@@ -19,17 +19,17 @@ public class PlaneRecord {
 //        planeString += Double.toString(p.getAccel());
         planeString += p.getMaxSpeed() + DELIMITER; //2
         planeString += p.getAccel(); //3
-        
+
         return planeString;
     }
-    
+
     //unmarshalling
-    public static Plane unloadRecord(String planeString){
-        String[] planeData=planeString.split(DELIMITER);
-        
+    public static Plane unloadRecord(String planeString) {
+        String[] planeData = planeString.split(DELIMITER);
+
         //parse
         Plane plane = new Plane(Double.parseDouble(planeData[3]), planeData[0], planeData[1], Double.parseDouble(planeData[2]));
-        
+
         return plane;
     }
 }

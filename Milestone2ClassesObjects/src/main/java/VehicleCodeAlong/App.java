@@ -6,7 +6,6 @@ In-Class assignment
  */
 package VehicleCodeAlong;
 
-import java.io.*;
 import java.util.*;
 
 public class App {

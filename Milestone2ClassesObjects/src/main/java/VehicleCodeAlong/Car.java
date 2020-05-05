@@ -9,15 +9,14 @@ public class Car extends Vehicle {
     /*ctor*/
     public Car(double accel, String name, String color, double maxSpeed) {
         super(name, color, maxSpeed);
-        this.isMoving=false;
+        this.isMoving = false;
         this.accel = accel;
     }
-    
-    
+
     public Car(String name, String color, double maxSpeed, String brand, int modelYear, double accel) {
         super(name, color, maxSpeed);
-        this.isMoving=false;
-        this.accel=accel;
+        this.isMoving = false;
+        this.accel = accel;
     }
 
     /*getter/setters*/
@@ -34,7 +33,7 @@ public class Car extends Vehicle {
     public void gas() {
         super.gas();
         setCurrentSpeed(this.currentSpeed + this.accel);
-        
+
         System.out.println("Your " + getName() + " is moving at " + getCurrentSpeed() + "MPH");
     }
 
@@ -42,7 +41,7 @@ public class Car extends Vehicle {
     public void brake() {
         super.brake();
         setCurrentSpeed(this.currentSpeed - this.accel);
-        
+
         System.out.println("Your " + getName() + " is moving at " + getCurrentSpeed() + "MPH");
     }
 }
