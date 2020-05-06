@@ -14,11 +14,10 @@ import java.util.*;
 
 public class StateCap3 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Map<String, Capital> stateCapsInfo = new HashMap<>();
 
         Scanner read = new Scanner(new BufferedReader(new FileReader("StateCapitals2.txt")));
-        //FIXME what the hell is this error
         
         while (read.hasNextLine()) {
             String currentLine=read.nextLine();
