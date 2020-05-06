@@ -13,7 +13,7 @@ package ExStateCapitals2;
 import java.io.*;
 import java.util.*;
 
-public class StateCapitals2 {
+public class StateCap2 {
 
     public static void main(String[] args) throws IOException {
         /*Unmarshall StateCapitals.txt*/
