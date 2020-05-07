@@ -146,7 +146,7 @@ public class UserIOImpl implements UserIO {
         System.out.println("min = " + min);
         System.out.println("max = " + max);
         do {
-            System.out.print("Enter double: ");
+            System.out.print("Enter float: ");
             userInput = input.nextFloat();
         } while (userInput < min || userInput > max);
 
@@ -187,7 +187,7 @@ public class UserIOImpl implements UserIO {
         System.out.println("min = " + min);
         System.out.println("max = " + max);
         do {
-            System.out.print("Enter double: ");
+            System.out.print("Enter long: ");
             userInput = input.nextLong();
         } while (userInput < min || userInput > max);
 
