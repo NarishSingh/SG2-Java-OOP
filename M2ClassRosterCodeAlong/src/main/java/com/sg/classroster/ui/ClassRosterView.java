@@ -9,7 +9,7 @@ import java.util.List;
 public class ClassRosterView {
 
     private UserIO io = new UserIOImpl();
-    
+
     /**
      * Print UI Menu and get selection
      *
@@ -67,7 +67,8 @@ public class ClassRosterView {
      */
     public void displayStudentList(List<Student> studentList) {
         for (Student currentStudent : studentList) {
-            String studentInfo = String.format("#%s : %s %s", currentStudent.getStudentID(), currentStudent.getFirstName(), currentStudent.getLastName());
+            String studentInfo = String.format("#%s : %s %s", currentStudent.getStudentID(),
+                    currentStudent.getFirstName(), currentStudent.getLastName());
             io.print(studentInfo);
         }
 
@@ -97,36 +98,61 @@ public class ClassRosterView {
     public String getStudentIDChoice() {
         return io.readString("Please enter the Student ID: ");
     }
-    
+
     /**
-     * Display single student
-     * @param student {Student} 
+     * Display single student, or if there was no student to display
+     *
+     * @param student {Student} the single student to be displayed
      */
-    public void displayStudent(Student student){
-        if (student!=null) {
+    public void displayStudent(Student student) {
+        if (student != null) {
             io.print(student.getStudentID());
             io.print(student.getFirstName() + " " + student.getLastName());
             io.print(student.getCohort());
             io.print("");
-        } else{
+        } else {
             io.print("No such student");
         }
-        
+
         io.readString("Press ENTER to continue.");
     }
-    
+
     /*4 - Remove student*/
-    public void displayRemoveStudentBanner(){
+    /**
+     * Display opening Remove Student banner for UI
+     */
+    public void displayRemoveStudentBanner() {
         io.print("===Remove Student===");
     }
-    
-    public void displayRemoveResult(Student studentRecord){
-        if (studentRecord!=null) {
+
+    /**
+     * Display closing Remove Student banner for UI showing that obj was removed
+     * successfully, or if there was no student to remove
+     *
+     * @param studentRecord {Student} the student object to be removed
+     */
+    public void displayRemoveResult(Student studentRecord) {
+        if (studentRecord != null) {
             io.print("Student successfully removed");
         } else {
             io.print("No such student.");
         }
-        
+
         io.readString("Press ENTER to continue.");
+    }
+
+    /*5 - Exit*/
+    /**
+     * Display Exit banner in UI
+     */
+    public void displayExitBanner() {
+        io.print("***Good Bye!!!***");
+    }
+
+    /**
+     * Display Unknown Command banner in UI
+     */
+    public void displayUnknownCommandBanner() {
+        io.print("Unknown Command...");
     }
 }

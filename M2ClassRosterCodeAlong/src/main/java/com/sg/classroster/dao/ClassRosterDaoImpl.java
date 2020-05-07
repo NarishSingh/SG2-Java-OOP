@@ -19,7 +19,7 @@ public class ClassRosterDaoImpl implements ClassRosterDao {
 
     @Override
     public List<Student> getAllStudents() {
-        return new ArrayList<Student>(students.values());
+        return new ArrayList<>(students.values());
     }
 
     @Override

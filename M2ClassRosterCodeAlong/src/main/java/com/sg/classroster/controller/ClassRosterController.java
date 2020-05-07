@@ -18,14 +18,17 @@ public class ClassRosterController {
     private ClassRosterView view = new ClassRosterView();
     private ClassRosterDao dao = new ClassRosterDaoImpl();
     private UserIO io = new UserIOImpl();
-    
+
+    /**
+     * App controller - control method calls based on user inputs
+     */
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
-        
+
         while (keepGoing) {
             menuSelection = getMenuSelection();
-            
+
             switch (menuSelection) {
                 case 1: {
                     listStudents();
@@ -48,42 +51,77 @@ public class ClassRosterController {
                     break;
                 }
                 default: {
-                    io.print("Unknown command...");
+                    unknownCommand();
                 }
             }
-            
-            io.print("Good Bye!");
+
+            exitMessage();
         }
     }
-    
+
+    /**
+     * Get user input for Menu
+     *
+     * @return {int} 1-5 for menu actions
+     */
     private int getMenuSelection() {
         return view.printMenuGetSelection();
     }
-    
+
+    /**
+     * Display banners for student obj creation. Construct new Student obj and
+     * fill fields. Add to class roster
+     */
     private void createStudent() {
         view.displayCreateStudentBanner();
         Student newStudent = view.getNewStudentInfo();
         dao.addStudent(newStudent.getStudentID(), newStudent);
         view.displayCreateSuccessBanner();
     }
-    
+
+    /**
+     * Display banners for class roster listing. Retrieve and display class
+     * roster from values in students HashMap DAO.
+     */
     private void listStudents() {
         view.displayDisplayAllBanner();
         List<Student> studentList = dao.getAllStudents();
         view.displayStudentList(studentList);
     }
-    
+
+    /**
+     * Display banners for student view listing. Get user input for the
+     * student's ID, then retrieve and display their info
+     */
     public void viewStudent() {
         view.displayDisplayStudentBanner();
         String studentID = view.getStudentIDChoice();
         Student student = dao.getStudent(studentID);
         view.displayStudent(student);
     }
-    
+
+    /**
+     * Display banners for removing a student from roster. Get user input for
+     * the student's ID, then remove from students HashMap DAO
+     */
     private void removeStudent() {
         view.displayRemoveStudentBanner();
         String studentID = view.getStudentIDChoice();
         Student removedStudent = dao.removeStudent(studentID);
         view.displayRemoveResult(removedStudent);
+    }
+
+    /**
+     * Display banner for an invalid Menu choice
+     */
+    private void unknownCommand() {
+        view.displayUnknownCommandBanner();
+    }
+
+    /**
+     * Display banner for exiting app
+     */
+    private void exitMessage() {
+        view.displayExitBanner();
     }
 }
