@@ -51,23 +51,29 @@ public class StateCap2 {
         //dump keys and values to arrays
         Object[] stateNames = statesCaps.keySet().toArray();
         Object[] capNames = statesCaps.values().toArray();
+        boolean[] stateUsed = new boolean[50]; //initialized to false
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
         int correct = 0;
         int wrong = 0;
+        String answer;
+        int randomState = 0;
 
         System.out.println("\nQuiz Time!!!");
         System.out.print("Enter number of states to guess: ");
         int q = Integer.parseInt(input.nextLine());
-        if (q < 0) {
+        if (q < 0 || q > 50) {
             throw new IllegalArgumentException("Invalid question number...");
         }
 
         for (int i = 0; i < q; i++) {
-            int randomState = rand.nextInt(50);
+            do {
+                randomState = rand.nextInt(50);
+            } while (stateUsed[randomState] == true); //roll, and if state is used, re-roll
 
             System.out.print("Enter the capital of " + stateNames[randomState] + ": ");
-            String answer = input.nextLine();
+            stateUsed[randomState] = true;
+            answer = input.nextLine();
 
             if (answer.equals(capNames[randomState])) {
                 System.out.println("Correct!");
@@ -77,7 +83,7 @@ public class StateCap2 {
                 wrong++;
             }
         }
-        
+
         System.out.println("\nCorrect = " + correct + " | Wrong = " + wrong);
     }
 
