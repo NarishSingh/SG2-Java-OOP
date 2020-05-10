@@ -5,7 +5,7 @@ when it needs to be done, and what component can do the job.
 package com.sg.classroster.controller;
 
 import com.sg.classroster.dao.ClassRosterDao;
-import com.sg.classroster.dao.ClassRosterDaoImpl;
+import com.sg.classroster.dao.ClassRosterDaoException;
 import com.sg.classroster.dto.Student;
 import com.sg.classroster.ui.ClassRosterView;
 import com.sg.classroster.ui.UserIO;
@@ -14,10 +14,17 @@ import java.util.List;
 
 public class ClassRosterController {
 
-    //TODO all javadoc for controller
-    private ClassRosterView view = new ClassRosterView();
-    private ClassRosterDao dao = new ClassRosterDaoImpl();
+//    private ClassRosterView view = new ClassRosterView();
+//    private ClassRosterDao dao = new ClassRosterDaoImpl();
     private UserIO io = new UserIOImpl();
+    private ClassRosterView view;
+    private ClassRosterDao dao;
+
+    /*ctors using dependency injection*/
+    public ClassRosterController(ClassRosterView view, ClassRosterDao dao) {
+        this.view = view;
+        this.dao = dao;
+    }
 
     /**
      * App controller - control method calls based on user inputs
@@ -25,37 +32,41 @@ public class ClassRosterController {
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
-
-        while (keepGoing) {
-            menuSelection = getMenuSelection();
-
-            switch (menuSelection) {
-                case 1: {
-                    listStudents();
-                    break;
+        
+        try {
+            while (keepGoing) {
+                menuSelection = getMenuSelection();
+                
+                switch (menuSelection) {
+                    case 1: {
+                        listStudents();
+                        break;
+                    }
+                    case 2: {
+                        createStudent();
+                        break;
+                    }
+                    case 3: {
+                        viewStudent();
+                        break;
+                    }
+                    case 4: {
+                        removeStudent();
+                        break;
+                    }
+                    case 5: {
+                        keepGoing = false;
+                        break;
+                    }
+                    default: {
+                        unknownCommand();
+                    }
                 }
-                case 2: {
-                    createStudent();
-                    break;
-                }
-                case 3: {
-                    viewStudent();
-                    break;
-                }
-                case 4: {
-                    removeStudent();
-                    break;
-                }
-                case 5: {
-                    keepGoing = false;
-                    break;
-                }
-                default: {
-                    unknownCommand();
-                }
+                
+                exitMessage();
             }
-
-            exitMessage();
+        } catch (ClassRosterDaoException e) {
+            view.displayErrorMessage(e.getMessage());
         }
     }
 
@@ -71,8 +82,10 @@ public class ClassRosterController {
     /**
      * Display banners for student obj creation. Construct new Student obj and
      * fill fields. Add to class roster
+     *
+     * @throws ClassRosterDaoException
      */
-    private void createStudent() {
+    private void createStudent() throws ClassRosterDaoException {
         view.displayCreateStudentBanner();
         Student newStudent = view.getNewStudentInfo();
         dao.addStudent(newStudent.getStudentID(), newStudent);
@@ -82,8 +95,10 @@ public class ClassRosterController {
     /**
      * Display banners for class roster listing. Retrieve and display class
      * roster from values in students HashMap DAO.
+     *
+     * @throws ClassRosterDaoException
      */
-    private void listStudents() {
+    private void listStudents() throws ClassRosterDaoException {
         view.displayDisplayAllBanner();
         List<Student> studentList = dao.getAllStudents();
         view.displayStudentList(studentList);
@@ -92,8 +107,10 @@ public class ClassRosterController {
     /**
      * Display banners for student view listing. Get user input for the
      * student's ID, then retrieve and display their info
+     *
+     * @throws ClassRosterDaoException
      */
-    public void viewStudent() {
+    public void viewStudent() throws ClassRosterDaoException {
         view.displayDisplayStudentBanner();
         String studentID = view.getStudentIDChoice();
         Student student = dao.getStudent(studentID);
@@ -103,8 +120,10 @@ public class ClassRosterController {
     /**
      * Display banners for removing a student from roster. Get user input for
      * the student's ID, then remove from students HashMap DAO
+     *
+     * @throws ClassRosterDaoException
      */
-    private void removeStudent() {
+    private void removeStudent() throws ClassRosterDaoException {
         view.displayRemoveStudentBanner();
         String studentID = view.getStudentIDChoice();
         Student removedStudent = dao.removeStudent(studentID);

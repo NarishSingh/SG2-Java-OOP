@@ -8,7 +8,12 @@ import java.util.List;
 
 public class ClassRosterView {
 
-    private UserIO io = new UserIOImpl();
+//    private UserIO io = new UserIOImpl();
+    private UserIO io;
+
+    public ClassRosterView(UserIO io) {
+        this.io = io;
+    }
 
     /**
      * Print UI Menu and get selection
@@ -154,5 +159,15 @@ public class ClassRosterView {
      */
     public void displayUnknownCommandBanner() {
         io.print("Unknown Command...");
+    }
+
+    /**
+     * Display error message for issues with IO
+     *
+     * @param errorMsg {String} error message to user
+     */
+    public void displayErrorMessage(String errorMsg) {
+        io.print("===Error===");
+        io.print(errorMsg);
     }
 }
