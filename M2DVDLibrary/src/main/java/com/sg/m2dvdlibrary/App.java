@@ -10,7 +10,7 @@ In this assessment, you will create a program that stores information about a DV
 -Load the DVD library from a file
 -Save the DVD library back to the file when the program completes
 -Allow the user to add, edit, or delete many DVDs in one session
-*/
+ */
 package com.sg.m2dvdlibrary;
 
 public class App {
@@ -18,5 +18,5 @@ public class App {
     public static void main(String[] args) {
         
     }
-    
+
 }
