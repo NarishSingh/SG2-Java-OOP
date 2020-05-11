@@ -64,9 +64,9 @@ public class ClassRosterDaoImpl implements ClassRosterDao {
 
     /**
      * Read in a file and construct Student objects from lines delimited by ::,
-     * throws exception if file cannot be written to
+     * throws exception if file cannot be read from
      *
-     * @throws ClassRosterDaoException {IOException} if cannot write to file
+     * @throws ClassRosterDaoException {FileNotFoundException} if cannot write read from
      */
     private void loadRoster() throws ClassRosterDaoException {
         Scanner scanner;

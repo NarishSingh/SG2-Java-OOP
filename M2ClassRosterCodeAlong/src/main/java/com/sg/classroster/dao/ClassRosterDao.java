@@ -22,7 +22,7 @@ public interface ClassRosterDao {
      * with that ID it will return that student object, otherwise null
      *
      * @param studentID {String} id to associate with the student
-     * @param student   {String} student being added to roster
+     * @param student   {Student} student being added to roster
      * @return {Student|null} Student object for the previously associated ID,
      *         null otherwise
      * @throws ClassRosterDaoException {IOException} if roster cannot be written
@@ -53,9 +53,9 @@ public interface ClassRosterDao {
      * student exists for that ID
      *
      * @param studentID {String} the id for student to be removed
-     * @return {Student} student object to be removed, null if no such student
-     *         is on roster
-     * @throws ClassRosterDaoException
+     * @return {Student|null} student object to be removed, null if no such
+     *         student is on roster
+     * @throws ClassRosterDaoException if roster cannot be loaded or written to
      */
     Student removeStudent(String studentID) throws ClassRosterDaoException;
 }
