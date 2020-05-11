@@ -41,7 +41,7 @@ public class ClassRosterView {
         String studentID = io.readString("Please enter Student ID: ");
         String firstName = io.readString("Please enter first name: ");
         String lastName = io.readString("Please enter last name: ");
-        String cohort = io.readString("Please enter last name: ");
+        String cohort = io.readString("Please enter cohort (language, month, and year): ");
         Student currentStudent = new Student(studentID);
         currentStudent.setFirstName(firstName);
         currentStudent.setLastName(lastName);
