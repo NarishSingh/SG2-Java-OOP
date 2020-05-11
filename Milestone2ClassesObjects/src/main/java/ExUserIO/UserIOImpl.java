@@ -2,7 +2,14 @@ package ExUserIO;
 
 import java.util.Scanner;
 
+/**
+ * Implementation of UserIO interface
+ *
+ * @author Narish
+ */
 public class UserIOImpl implements UserIO {
+
+    final private Scanner input = new Scanner(System.in);
 
     /**
      * Print a message
@@ -22,10 +29,9 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public String readString(String prompt) {
-        Scanner input = new Scanner(System.in);
-
         System.out.print(prompt);
         String userInput = input.nextLine();
+
         return userInput;
     }
 
@@ -37,10 +43,9 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public int readInt(String prompt) {
-        Scanner input = new Scanner(System.in);
-
         System.out.print(prompt);
-        int userInput = input.nextInt();
+        int userInput = Integer.parseInt(input.nextLine());
+
         return userInput;
     }
 
@@ -55,7 +60,6 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public int readInt(String prompt, int min, int max) {
-        Scanner input = new Scanner(System.in);
         int userInput;
 
         System.out.println(prompt);
@@ -63,7 +67,7 @@ public class UserIOImpl implements UserIO {
         System.out.println("max = " + max);
         do {
             System.out.print("Enter integer: ");
-            userInput = input.nextInt();
+            userInput = Integer.parseInt(input.nextLine());
         } while (userInput < min || userInput > max);
 
         return userInput;
@@ -77,10 +81,9 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public double readDouble(String prompt) {
-        Scanner input = new Scanner(System.in);
-
         System.out.print(prompt);
-        double userInput = input.nextDouble();
+        double userInput = Double.parseDouble(input.nextLine());
+
         return userInput;
     }
 
@@ -95,7 +98,6 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public double readDouble(String prompt, double min, double max) {
-        Scanner input = new Scanner(System.in);
         double userInput;
 
         System.out.println(prompt);
@@ -103,7 +105,7 @@ public class UserIOImpl implements UserIO {
         System.out.println("max = " + max);
         do {
             System.out.print("Enter double: ");
-            userInput = input.nextDouble();
+            userInput = Double.parseDouble(input.nextLine());
         } while (userInput < min || userInput > max);
 
         return userInput;
@@ -117,10 +119,9 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public float readFloat(String prompt) {
-        Scanner input = new Scanner(System.in);
-
         System.out.print(prompt);
-        float userInput = input.nextFloat();
+        float userInput = Float.parseFloat(input.nextLine());
+
         return userInput;
     }
 
@@ -135,7 +136,6 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public float readFloat(String prompt, float min, float max) {
-        Scanner input = new Scanner(System.in);
         float userInput;
 
         System.out.println(prompt);
@@ -143,7 +143,7 @@ public class UserIOImpl implements UserIO {
         System.out.println("max = " + max);
         do {
             System.out.print("Enter float: ");
-            userInput = input.nextFloat();
+            userInput = Float.parseFloat(input.nextLine());
         } while (userInput < min || userInput > max);
 
         return userInput;
@@ -157,10 +157,9 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public long readLong(String prompt) {
-        Scanner input = new Scanner(System.in);
-
         System.out.print(prompt);
-        long userInput = input.nextLong();
+        long userInput = Long.parseLong(input.nextLine());
+
         return userInput;
     }
 
@@ -175,7 +174,6 @@ public class UserIOImpl implements UserIO {
      */
     @Override
     public long readLong(String prompt, long min, long max) {
-        Scanner input = new Scanner(System.in);
         long userInput;
 
         System.out.println(prompt);
@@ -183,7 +181,7 @@ public class UserIOImpl implements UserIO {
         System.out.println("max = " + max);
         do {
             System.out.print("Enter long: ");
-            userInput = input.nextLong();
+            userInput = Long.parseLong(input.nextLine());
         } while (userInput < min || userInput > max);
 
         return userInput;

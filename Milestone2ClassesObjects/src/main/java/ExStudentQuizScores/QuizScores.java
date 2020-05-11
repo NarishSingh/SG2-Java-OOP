@@ -73,7 +73,7 @@ public class QuizScores {
                     break;
                 }
                 case 5: { //avg score for student
-                    double studentQuizSum = 0; //so avg is double
+                    double studentQuizSum = 0; //so avg calculates to double
                     int studentQuizCount = 0;
 
                     String name = io.readString("Enter student's full name: ");
@@ -88,7 +88,7 @@ public class QuizScores {
                     break;
                 }
                 case 6: { //course avg
-                    double courseQuizSum = 0; //so avg is double
+                    double courseQuizSum = 0; //so avg calculates to double
                     int courseQuizCount = 0;
 
                     for (String s : studentList) {
@@ -112,7 +112,7 @@ public class QuizScores {
                     break;
                 }
                 case 7: { //top student
-                    String bestStudent = "none";
+                    String bestStudent = "";
                     int bestInClass = 0;
 
                     for (String s : studentList) {
@@ -137,7 +137,7 @@ public class QuizScores {
                     break;
                 }
                 case 8: { //class dunce
-                    String worstStudent = "none";
+                    String worstStudent = "";
                     int worstInClass = 100;
 
                     for (String s : studentList) {
