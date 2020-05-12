@@ -46,6 +46,7 @@ public class ClassRosterView {
         currentStudent.setFirstName(firstName);
         currentStudent.setLastName(lastName);
         currentStudent.setCohort(cohort);
+        
         return currentStudent;
     }
 
@@ -61,7 +62,7 @@ public class ClassRosterView {
      * successfully
      */
     public void displayCreateSuccessBanner() {
-        io.readString("Student create. Press ENTER to continue.");
+        io.readString("Student added. Press ENTER to continue.");
     }
 
     /*1 - List Students*/
@@ -154,6 +155,7 @@ public class ClassRosterView {
         io.print("***Good Bye!!!***");
     }
 
+    /*EXCEPTION/ERROR HANDLING*/
     /**
      * Display Unknown Command banner in UI
      */
