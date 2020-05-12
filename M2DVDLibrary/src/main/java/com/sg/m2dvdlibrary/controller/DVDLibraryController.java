@@ -19,34 +19,36 @@ public class DVDLibraryController {
         this.view = view;
     }
 
+    /**
+     * App controller
+     */
     public void run() {
         boolean editLibrary = true;
         int menuSelection = 0;
 
-        //TODO encapsulate in try-catch w app specific exception
         try {
             while (editLibrary) {
                 menuSelection = getMenuSelection();
 
                 switch (menuSelection) {
                     case 1: {
-                        //add
+                        createDVD();
                         break;
                     }
                     case 2: {
-                        //remove
+                        removeDVD();
                         break;
                     }
                     case 3: {
-                        //edit
+                        editDVD();
                         break;
                     }
                     case 4: {
-                        //list all
+                        listLibrary();
                         break;
                     }
                     case 5: {
-                        //view dvd info
+                        viewDVD();
                         break;
                     }
                     case 6: {
@@ -75,8 +77,39 @@ public class DVDLibraryController {
         return view.printMenuGetSelection();
     }
 
+    /**
+     * Display banners for DVD entry creation. Construct new DVD obj and fill
+     * fields from user inputs. Add to library
+     *
+     * @throws DVDLibraryDAOException if unable to write to library
+     */
+    private void createDVD() throws DVDLibraryDAOException {
+        view.displayNewDVDInfo();
+        DVD newDVD = view.getNewDVDInfo();
+        dao.addDVD(newDVD.getTitle(), newDVD);
+        view.displayNewDVDSuccessBanner();
+    }
 
+    /**
+     * Display banners for DVD entry removal. Get title of DVD from user and
+     * remove from library HashMap
+     *
+     * @throws DVDLibraryDAOException if unable to read from or write to library
+     */
+    private void removeDVD() throws DVDLibraryDAOException {
+        view.displayRemoveDVDBanner();
+        String dvdTitle = view.getDVDTitle();
+        DVD removedDVD = dao.removeDVD(dvdTitle);
+        view.displayRemoveResult(removedDVD);
+    }
 
+    /**
+     * Display banners for DVD entry editing. Get title of DVD, copy obj and
+     * then get the new info for entry. Add edited entry to HashMap, overwriting
+     * the obj value at that key
+     *
+     * @throws DVDLibraryDAOException if unable to read from or write to library
+     */
     private void editDVD() throws DVDLibraryDAOException {
         view.displayEditDVDBanner();
         String dvdTitle = view.getDVDTitle();
@@ -86,14 +119,31 @@ public class DVDLibraryController {
         view.displayEditDVDSuccessBanner();
     }
 
+    /**
+     * Display banners for DVD library titles listing. Retrieve and display
+     * titles from keyset of library HashMap
+     *
+     * @throws DVDLibraryDAOException if cannot read from library
+     */
     private void listLibrary() throws DVDLibraryDAOException {
         view.displayDisplayLibraryBanner();
         List<DVD> dvdList = dao.getLibrary();
         view.displayLibrary(dvdList);
     }
 
-    //TODO finish the rest of controller methods
-    
+    /**
+     * Display banners for DVD entry viewing. Get title from user, then retrieve
+     * and display DVD obj
+     *
+     * @throws DVDLibraryDAOException if cannot read from library
+     */
+    public void viewDVD() throws DVDLibraryDAOException {
+        view.displayDisplayDVDBanner();
+        String dvdTitle = view.getDVDTitle();
+        DVD dvd = dao.getDVD(dvdTitle);
+        view.getDVDEntry(dvd);
+    }
+
     /**
      * Display banner for an invalid Menu choice
      */

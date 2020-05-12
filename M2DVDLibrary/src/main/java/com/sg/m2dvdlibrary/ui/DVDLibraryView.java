@@ -135,14 +135,13 @@ public class DVDLibraryView {
     }
 
     /*4 - LIST ALL DVD'S IN LIBRARY*/
-    //FIXME double check this...might have messed something up
     /**
      * Display all DVD titles in library
      *
-     * @param entryList {List} DVD library
+     * @param dvdList {List} DVD library keyset
      */
-    public void displayLibrary(List<DVD> entryList) {
-        for (DVD currentDVD : entryList) {
+    public void displayLibrary(List<DVD> dvdList) {
+        for (DVD currentDVD : dvdList) {
             io.print(currentDVD.getTitle());
         }
 
@@ -157,7 +156,7 @@ public class DVDLibraryView {
     }
 
     /*5 - VIEW DVD INFO*/
-    public void displayDVDEntry(DVD dvd) {
+    public void getDVDEntry(DVD dvd) {
         if (dvd != null) {
             String dvdInfo = String.format("\"%s,\" debuted: %s, Directed by %s, %s, MPAA: %s, My Reactions: %s",
                     dvd.getTitle(), dvd.getReleaseDate(), dvd.getDirector(),
@@ -169,6 +168,10 @@ public class DVDLibraryView {
         }
 
         io.readString("Press ENTER to continue");
+    }
+    
+    public void displayDisplayDVDBanner(){
+        io.print("===Display DVD===");
     }
 
     /*6 - EXIT*/
