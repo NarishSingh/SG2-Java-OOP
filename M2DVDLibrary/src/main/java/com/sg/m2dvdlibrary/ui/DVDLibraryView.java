@@ -1,19 +1,22 @@
 package com.sg.m2dvdlibrary.ui;
 
+import com.sg.m2dvdlibrary.dto.DVD;
+import java.util.List;
+
 public class DVDLibraryView {
-    
+
     private UserIO io;
 
     public DVDLibraryView(UserIO io) {
         this.io = io;
     }
-    
+
     /**
      * Print UI menu and get selection
-     * 
+     *
      * @return {int} 1-6 for menu choice
      */
-    public int printMenuGetSelection(){
+    public int printMenuGetSelection() {
         io.print("Menu");
         io.print("1 | Add DVD");
         io.print("2 | Remove DVD");
@@ -21,7 +24,176 @@ public class DVDLibraryView {
         io.print("4 | List all DVD's");
         io.print("5 | View DVD Info");
         io.print("6 | Exit Program");
-        
+
         return io.readInt("Action: ", 1, 5);
+    }
+
+    /*1 - ADD DVD*/
+    /**
+     * Get string input to construct and fill fields of new DVD obj
+     *
+     * @return {DVD} a DVD obj with all fields filled
+     */
+    public DVD getNewDVDInfo() {
+        String title = io.readString("Enter DVD title: ");
+        String releaseDate = io.readString("Enter release date: ");
+        String director = io.readString("Enter director's name: ");
+        String studio = io.readString("Enter studio name: ");
+        String mpaaRating = io.readString("Enter MPAA rating: ");
+        String userRating = io.readString("Enter your own personal rating, or comments: ");
+
+        DVD currentDVD = new DVD(title);
+        currentDVD.setReleaseDate(releaseDate);
+        currentDVD.setDirector(director);
+        currentDVD.setStudio(studio);
+        currentDVD.setMpaaRating(mpaaRating);
+        currentDVD.setUserRating(userRating);
+
+        return currentDVD;
+    }
+
+    /**
+     * Display opening New DVD banner for UI
+     */
+    public void displayNewDVDInfo() {
+        io.print("===Add New DVD===");
+    }
+
+    /**
+     * Display closing New DVD successfully added banner for UI
+     */
+    public void displayNewDVDSuccessBanner() {
+        io.readString("DVD added to library. Press ENTER to continue");
+    }
+
+    /*2 - REMOVE DVD*/
+    /**
+     * Display opening Remove DVD for UI
+     */
+    public void displayRemoveDVDBanner() {
+        io.print("===Remove DVD===");
+    }
+
+    /**
+     * Display closing Remove DVD banner showing success, or if there was no
+     * entry to remove
+     *
+     * @param dvdEntry {DVD} the DVD obj to be removed
+     */
+    public void displayRemoveResult(DVD dvdEntry) {
+        if (dvdEntry != null) {
+            io.print("DVD removed from library.");
+        } else {
+            io.print("No such DVD.");
+        }
+
+        io.readString("Press ENTER to continue");
+    }
+
+    /*3 - EDIT DVD*/
+    /**
+     * Get input for title of DVD in library
+     *
+     * @return {String} title of DVD entry
+     */
+    public String getDVDTitle() {
+        return io.readString("Please enter DVD title: ");
+    }
+
+    /**
+     * Edit fields of a existing DVD entry in library
+     *
+     * @param editedDVD {DVD} copy of existing DVD entry to be edited and then
+     *                  used to overwrite entry in library
+     */
+    public void editDVDEntry(DVD editedDVD) {
+        String newReleaseDate = io.readString("Enter release date: ");
+        String newDirector = io.readString("Enter director's name: ");
+        String newStudio = io.readString("Enter studio name: ");
+        String newMpaaRating = io.readString("Enter MPAA rating: ");
+        String newUserRating = io.readString("Enter your own personal rating, or comments: ");
+
+        editedDVD.setReleaseDate(newReleaseDate);
+        editedDVD.setDirector(newDirector);
+        editedDVD.setStudio(newStudio);
+        editedDVD.setMpaaRating(newMpaaRating);
+        editedDVD.setUserRating(newUserRating);
+    }
+
+    /**
+     * Display opening Edit DVD banner for UI
+     */
+    public void displayEditDVDBanner() {
+        io.print("===Edit DVD===");
+    }
+
+    /**
+     * Display closing Edit DVD banner for UI if DVD successfully edited
+     */
+    public void displayEditDVDSuccessBanner() {
+        io.readString("DVD entry edited. Press ENTER to continue.");
+    }
+
+    /*4 - LIST ALL DVD'S IN LIBRARY*/
+    //FIXME double check this...might have messed something up
+    /**
+     * Display all DVD titles in library
+     *
+     * @param entryList {List} DVD library
+     */
+    public void displayLibrary(List<DVD> entryList) {
+        for (DVD currentDVD : entryList) {
+            io.print(currentDVD.getTitle());
+        }
+
+        io.readString("Press ENTER to continue.");
+    }
+
+    /**
+     * Display Display Library banner for UI
+     */
+    public void displayDisplayLibraryBanner() {
+        io.print("===Display Library===");
+    }
+
+    /*5 - VIEW DVD INFO*/
+    public void displayDVDEntry(DVD dvd) {
+        if (dvd != null) {
+            String dvdInfo = String.format("\"%s,\" debuted: %s, Directed by %s, %s, MPAA: %s, My Reactions: %s",
+                    dvd.getTitle(), dvd.getReleaseDate(), dvd.getDirector(),
+                    dvd.getStudio(), dvd.getMpaaRating(), dvd.getUserRating());
+
+            io.print(dvdInfo);
+        } else {
+            io.print("No such DVD in library");
+        }
+
+        io.readString("Press ENTER to continue");
+    }
+
+    /*6 - EXIT*/
+    /**
+     * Display Exit banner in UI
+     */
+    public void displayExitBanner() {
+        io.print("***Thank you***");
+    }
+
+    /*EXCEPTION/ERROR HANDLING*/
+    /**
+     * Display Unknown Command banner in UI
+     */
+    public void displayUnknownCommandBanner() {
+        io.print("Unknown Command...");
+    }
+
+    /**
+     * Display error message for issues with IO
+     *
+     * @param errorMsg {String} error message to user
+     */
+    public void displayErrorMessage(String errorMsg) {
+        io.print("===Error===");
+        io.print(errorMsg);
     }
 }
