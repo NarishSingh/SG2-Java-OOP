@@ -25,7 +25,7 @@ public class DVDLibraryView {
         io.print("5 | View DVD Info");
         io.print("6 | Exit Program");
 
-        return io.readInt("Action: ", 1, 5);
+        return io.readInt("Action: ", 1, 6);
     }
 
     /*1 - ADD DVD*/
@@ -169,8 +169,8 @@ public class DVDLibraryView {
 
         io.readString("Press ENTER to continue");
     }
-    
-    public void displayDisplayDVDBanner(){
+
+    public void displayDisplayDVDBanner() {
         io.print("===Display DVD===");
     }
 
