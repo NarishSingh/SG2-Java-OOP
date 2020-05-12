@@ -9,8 +9,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
     private Map<String, DVD> library = new HashMap<>();
     public static final String LIBRARY_FILE = "dvdlibrary.txt";
     public static final String DELIMITER = "::";
-
-    //TODO after IO stuff, do overrides
+    
     @Override
     public DVD addDVD(String title, DVD dvd) throws DVDLibraryDAOException {
         loadLibrary();
@@ -24,7 +23,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
     public List<DVD> getLibrary() throws DVDLibraryDAOException {
         loadLibrary();
 
-        return new ArrayList(library.values());
+        return new ArrayList(library.keySet());
     }
 
     @Override

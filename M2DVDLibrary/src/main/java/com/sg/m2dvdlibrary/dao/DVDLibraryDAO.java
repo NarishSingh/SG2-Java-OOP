@@ -5,10 +5,9 @@ import java.util.List;
 
 public interface DVDLibraryDAO {
 
-    //TODO javadoc for all
     /**
-     * Add DVD to library associated w title. If a DVD exists with this title
-     * already, it will return that same obj, otherwise null
+     * Add or edit a DVD entry to library associated w title. If a DVD exists
+     * with this title already, it will return that same obj, otherwise null
      *
      * @param title {String} title associated with DVD
      * @param dvd   {DVD} DVD object
