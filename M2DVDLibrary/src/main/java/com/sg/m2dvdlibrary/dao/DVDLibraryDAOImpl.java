@@ -22,8 +22,8 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
     @Override
     public List<DVD> getLibrary() throws DVDLibraryDAOException {
         loadLibrary();
-
-        return new ArrayList(library.keySet());
+        
+        return new ArrayList(library.values());
     }
 
     @Override

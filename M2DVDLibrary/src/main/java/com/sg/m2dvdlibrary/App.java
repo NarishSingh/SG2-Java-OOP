@@ -10,8 +10,6 @@ In this assessment, you will create a program that stores information about a DV
 -Load the DVD library from a file
 -Save the DVD library back to the file when the program completes
 -Allow the user to add, edit, or delete many DVDs in one session
-
-FIXME everything works except 4
  */
 package com.sg.m2dvdlibrary;
 
@@ -21,16 +19,15 @@ import com.sg.m2dvdlibrary.dao.DVDLibraryDAOImpl;
 import com.sg.m2dvdlibrary.ui.DVDLibraryView;
 import com.sg.m2dvdlibrary.ui.UserIO;
 import com.sg.m2dvdlibrary.ui.UserIOImpl;
-import com.sg.m2dvdlibrary.dto.DVD;
 
 public class App {
 
     public static void main(String[] args) {
-        UserIO io=new UserIOImpl();
-        DVDLibraryView v=new DVDLibraryView(io);
-        DVDLibraryDAO dao=new DVDLibraryDAOImpl();
-        DVDLibraryController c=new DVDLibraryController(dao, v);
-        
+        UserIO io = new UserIOImpl();
+        DVDLibraryView v = new DVDLibraryView(io);
+        DVDLibraryDAO dao = new DVDLibraryDAOImpl();
+        DVDLibraryController c = new DVDLibraryController(dao, v);
+
         c.run();
     }
 
