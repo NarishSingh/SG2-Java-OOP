@@ -44,7 +44,7 @@ public class DVDLibraryController {
                         break;
                     }
                     case 4: {
-                        listLibrary(); //FIXME give feedback if library is empty
+                        listLibrary();
                         break;
                     }
                     case 5: {
