@@ -11,7 +11,7 @@ package com.sg.simplecalc.dto;
 public class Calculation {
 
     /*fields*/
-    private long timestampID;
+    private long timestampID; //will be key in HashMap
     private double firstNum;
     private double secondNum;
     private String operation;
