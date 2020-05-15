@@ -40,7 +40,7 @@ public class DVDLibraryController {
                         break;
                     }
                     case 3: {
-                        editDVD(); //FIXME if try to edit a DVD that doesn't exist, program will crash
+                        editDVD();
                         break;
                     }
                     case 4: {
@@ -132,7 +132,12 @@ public class DVDLibraryController {
     private void listLibrary() throws DVDLibraryDAOException {
         view.displayDisplayLibraryBanner();
         List<DVD> dvdList = dao.getLibrary();
-        view.displayLibrary(dvdList);
+        if (!dvdList.isEmpty()) {
+            view.displayLibrary(dvdList);
+        } else {
+            view.displayLibraryEmptyBanner();
+        }
+
     }
 
     /**

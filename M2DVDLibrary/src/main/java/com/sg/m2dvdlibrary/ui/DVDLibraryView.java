@@ -161,6 +161,13 @@ public class DVDLibraryView {
     public void displayDisplayLibraryBanner() {
         io.print("===Display Library===");
     }
+    
+    /**
+     * Display Library Empty banner for UI if no titles are in library
+     */
+    public void displayLibraryEmptyBanner(){
+        io.readString("Library is currently empty. Press ENTER to continue");
+    }
 
     /*5 - VIEW DVD INFO*/
     public void getDVDEntry(DVD dvd) {
