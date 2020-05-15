@@ -11,5 +11,16 @@ import java.io.*;
  */
 public interface CalcDAO {
     //TODO make impl
-    Calculation logCalc(String ID, Calculation calc) throws CalcDAOException;
+    //TODO make javadoc
+    
+    Calculation performCalc(Calculation calc) throws CalcDAOException;
+    
+    Calculation logCalc(long ID, Calculation calc) throws CalcDAOException;
+
+    List<Calculation> getLog() throws CalcDAOException;
+
+    Calculation getCalc(long timestampID) throws CalcDAOException;
+
+    List<Calculation> clearLog() throws CalcDAOException;
+    
 }
