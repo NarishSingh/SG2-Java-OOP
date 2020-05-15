@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="M2DVDLibrary">
+  <ClassDiagramComponents>
+    <Class name="App" package="com.sg.m2dvdlibrary" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DVDLibraryController" package="com.sg.m2dvdlibrary.controller" visibility="public" xPosition="265.0" yPosition="20.0">
+      <Fields>
+        <Field name="io" type="UserIO" visibility="private"/>
+        <Field name="dao" type="DVDLibraryDAO" visibility="private"/>
+        <Field name="view" type="DVDLibraryView" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DVDLibraryDAO" name="dao"/>
+          <Argument type="DVDLibraryView" name="view"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="getMenuSelection" returnType="int" visibility="private"/>
+        <Method name="createDVD" returnType="void" visibility="private"/>
+        <Method name="removeDVD" returnType="void" visibility="private"/>
+        <Method name="editDVD" returnType="void" visibility="private"/>
+        <Method name="listLibrary" returnType="void" visibility="private"/>
+        <Method name="viewDVD" returnType="void" visibility="public"/>
+        <Method name="unknownCommand" returnType="void" visibility="private"/>
+        <Method name="exitMessage" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="DVDLibraryDAOException" package="com.sg.m2dvdlibrary.dao" visibility="public" xPosition="772.0" yPosition="553.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="message"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="message"/>
+          <Argument type="Throwable" name="cause"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DVDLibraryDAOImpl" package="com.sg.m2dvdlibrary.dao" visibility="public" xPosition="1168.0" yPosition="382.0">
+      <Fields>
+        <Field name="library" type="Map&lt;String, DVD&gt;" visibility="private"/>
+        <Field name="LIBRARY_FILE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="DELIMITER" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="addDVD" returnType="DVD" visibility="public">
+          <Argument type="String" name="title"/>
+          <Argument type="DVD" name="dvd"/>
+        </Method>
+        <Method name="getLibrary" returnType="List&lt;DVD&gt;" visibility="public"/>
+        <Method name="getDVD" returnType="DVD" visibility="public">
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="removeDVD" returnType="DVD" visibility="public">
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="unmarshallDVD" returnType="DVD" visibility="private">
+          <Argument type="String" name="dvdAsText"/>
+        </Method>
+        <Method name="loadLibrary" returnType="void" visibility="private"/>
+        <Method name="marshallDVD" returnType="String" visibility="private">
+          <Argument type="DVD" name="aDVD"/>
+        </Method>
+        <Method name="writeLibrary" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="DVD" package="com.sg.m2dvdlibrary.dto" visibility="public" xPosition="5.0" yPosition="382.0">
+      <Fields>
+        <Field name="title" type="String" visibility="private"/>
+        <Field name="releaseDate" type="String" visibility="private"/>
+        <Field name="director" type="String" visibility="private"/>
+        <Field name="studio" type="String" visibility="private"/>
+        <Field name="mpaaRating" type="String" visibility="private"/>
+        <Field name="userRating" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="title"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getReleaseDate" returnType="String" visibility="public"/>
+        <Method name="setReleaseDate" returnType="void" visibility="public">
+          <Argument type="String" name="releaseDate"/>
+        </Method>
+        <Method name="getMpaaRating" returnType="String" visibility="public"/>
+        <Method name="setMpaaRating" returnType="void" visibility="public">
+          <Argument type="String" name="mpaaRating"/>
+        </Method>
+        <Method name="getDirector" returnType="String" visibility="public"/>
+        <Method name="setDirector" returnType="void" visibility="public">
+          <Argument type="String" name="director"/>
+        </Method>
+        <Method name="getStudio" returnType="String" visibility="public"/>
+        <Method name="setStudio" returnType="void" visibility="public">
+          <Argument type="String" name="studio"/>
+        </Method>
+        <Method name="getUserRating" returnType="String" visibility="public"/>
+        <Method name="setUserRating" returnType="void" visibility="public">
+          <Argument type="String" name="userRating"/>
+        </Method>
+        <Method name="getTitle" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DVDLibraryView" package="com.sg.m2dvdlibrary.ui" visibility="public" xPosition="1658.0" yPosition="20.0">
+      <Fields>
+        <Field name="io" type="UserIO" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="UserIO" name="io"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="printMenuGetSelection" returnType="int" visibility="public"/>
+        <Method name="getNewDVDInfo" returnType="DVD" visibility="public"/>
+        <Method name="displayNewDVDInfo" returnType="void" visibility="public"/>
+        <Method name="displayNewDVDSuccessBanner" returnType="void" visibility="public"/>
+        <Method name="displayRemoveDVDBanner" returnType="void" visibility="public"/>
+        <Method name="displayRemoveResult" returnType="void" visibility="public">
+          <Argument type="DVD" name="dvdEntry"/>
+        </Method>
+        <Method name="getDVDTitle" returnType="String" visibility="public"/>
+        <Method name="editDVDEntry" returnType="void" visibility="public">
+          <Argument type="DVD" name="editedDVD"/>
+        </Method>
+        <Method name="displayEditDVDBanner" returnType="void" visibility="public"/>
+        <Method name="displayEditDVDSuccessBanner" returnType="void" visibility="public"/>
+        <Method name="displayLibrary" returnType="void" visibility="public">
+          <Argument type="List&lt;DVD&gt;" name="dvdList"/>
+        </Method>
+        <Method name="displayDisplayLibraryBanner" returnType="void" visibility="public"/>
+        <Method name="getDVDEntry" returnType="void" visibility="public">
+          <Argument type="DVD" name="dvd"/>
+        </Method>
+        <Method name="displayDisplayDVDBanner" returnType="void" visibility="public"/>
+        <Method name="displayExitBanner" returnType="void" visibility="public"/>
+        <Method name="displayUnknownCommandBanner" returnType="void" visibility="public"/>
+        <Method name="displayErrorMessage" returnType="void" visibility="public">
+          <Argument type="String" name="errorMsg"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserIOImpl" package="com.sg.m2dvdlibrary.ui" visibility="public" xPosition="1658.0" yPosition="530.0">
+      <Fields>
+        <Field name="input" type="Scanner" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="print" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="readString" returnType="String" visibility="public">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readInt" returnType="int" visibility="public">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readInt" returnType="int" visibility="public">
+          <Argument type="String" name="prompt"/>
+          <Argument type="int" name="min"/>
+          <Argument type="int" name="max"/>
+        </Method>
+        <Method name="readDouble" returnType="double" visibility="public">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readDouble" returnType="double" visibility="public">
+          <Argument type="String" name="prompt"/>
+          <Argument type="double" name="min"/>
+          <Argument type="double" name="max"/>
+        </Method>
+        <Method name="readFloat" returnType="float" visibility="public">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readFloat" returnType="float" visibility="public">
+          <Argument type="String" name="prompt"/>
+          <Argument type="float" name="min"/>
+          <Argument type="float" name="max"/>
+        </Method>
+        <Method name="readLong" returnType="long" visibility="public">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readLong" returnType="long" visibility="public">
+          <Argument type="String" name="prompt"/>
+          <Argument type="long" name="min"/>
+          <Argument type="long" name="max"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="DVDLibraryDAO" package="com.sg.m2dvdlibrary.dao" visibility="public" xPosition="846.0" yPosition="382.0">
+      <Methods>
+        <Method name="addDVD" returnType="DVD" visibility="package">
+          <Argument type="String" name="title"/>
+          <Argument type="DVD" name="dvd"/>
+        </Method>
+        <Method name="getLibrary" returnType="List&lt;DVD&gt;" visibility="package"/>
+        <Method name="getDVD" returnType="DVD" visibility="package">
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="removeDVD" returnType="DVD" visibility="package">
+          <Argument type="String" name="title"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="UserIO" package="com.sg.m2dvdlibrary.ui" visibility="public" xPosition="931.0" yPosition="20.0">
+      <Methods>
+        <Method name="print" returnType="void" visibility="package">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="readString" returnType="String" visibility="package">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readInt" returnType="int" visibility="package">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readInt" returnType="int" visibility="package">
+          <Argument type="String" name="prompt"/>
+          <Argument type="int" name="min"/>
+          <Argument type="int" name="max"/>
+        </Method>
+        <Method name="readDouble" returnType="double" visibility="package">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readDouble" returnType="double" visibility="package">
+          <Argument type="String" name="prompt"/>
+          <Argument type="double" name="min"/>
+          <Argument type="double" name="max"/>
+        </Method>
+        <Method name="readFloat" returnType="float" visibility="package">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readFloat" returnType="float" visibility="package">
+          <Argument type="String" name="prompt"/>
+          <Argument type="float" name="min"/>
+          <Argument type="float" name="max"/>
+        </Method>
+        <Method name="readLong" returnType="long" visibility="package">
+          <Argument type="String" name="prompt"/>
+        </Method>
+        <Method name="readLong" returnType="long" visibility="package">
+          <Argument type="String" name="prompt"/>
+          <Argument type="long" name="min"/>
+          <Argument type="long" name="max"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="view" source="com.sg.m2dvdlibrary.controller.DVDLibraryController" target="com.sg.m2dvdlibrary.ui.DVDLibraryView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.sg.m2dvdlibrary.ui.DVDLibraryView" target="com.sg.m2dvdlibrary.dto.DVD" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.sg.m2dvdlibrary.dao.DVDLibraryDAO" target="com.sg.m2dvdlibrary.dto.DVD" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.sg.m2dvdlibrary.dao.DVDLibraryDAOImpl" target="com.sg.m2dvdlibrary.dto.DVD" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="library" source="com.sg.m2dvdlibrary.dao.DVDLibraryDAOImpl" target="com.sg.m2dvdlibrary.dto.DVD" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map&lt;String, DVD&gt;"/>
+    <HasRelation name="dao" source="com.sg.m2dvdlibrary.controller.DVDLibraryController" target="com.sg.m2dvdlibrary.dao.DVDLibraryDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.sg.m2dvdlibrary.ui.UserIOImpl" target="com.sg.m2dvdlibrary.ui.UserIO"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.sg.m2dvdlibrary.dao.DVDLibraryDAOImpl" target="com.sg.m2dvdlibrary.dao.DVDLibraryDAO"/>
+    <HasRelation name="io" source="com.sg.m2dvdlibrary.controller.DVDLibraryController" target="com.sg.m2dvdlibrary.ui.UserIO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="io" source="com.sg.m2dvdlibrary.ui.DVDLibraryView" target="com.sg.m2dvdlibrary.ui.UserIO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

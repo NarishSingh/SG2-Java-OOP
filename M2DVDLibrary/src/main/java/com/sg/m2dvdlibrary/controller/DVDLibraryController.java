@@ -40,11 +40,11 @@ public class DVDLibraryController {
                         break;
                     }
                     case 3: {
-                        editDVD();
+                        editDVD(); //FIXME if try to edit a DVD that doesn't exist, program will crash
                         break;
                     }
                     case 4: {
-                        listLibrary();
+                        listLibrary(); //FIXME give feedback if library is empty
                         break;
                     }
                     case 5: {
@@ -113,10 +113,14 @@ public class DVDLibraryController {
     private void editDVD() throws DVDLibraryDAOException {
         view.displayEditDVDBanner();
         String dvdTitle = view.getDVDTitle();
-        DVD editedDVD = dao.getDVD(dvdTitle);
-        view.editDVDEntry(editedDVD);
-        dao.addDVD(dvdTitle, editedDVD); //will overwrite the value in HashMap
-        view.displayEditDVDSuccessBanner();
+        if (dao.getDVD(dvdTitle) != null) {
+            DVD editedDVD = dao.getDVD(dvdTitle);
+            view.editDVDEntry(editedDVD);
+            dao.addDVD(dvdTitle, editedDVD); //will overwrite the value in HashMap
+            view.displayEditDVDSuccessBanner();
+        } else {
+            view.displayEditDVDFailBanner();
+        }
     }
 
     /**

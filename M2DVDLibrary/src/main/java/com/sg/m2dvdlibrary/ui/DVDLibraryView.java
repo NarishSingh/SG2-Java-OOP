@@ -133,6 +133,13 @@ public class DVDLibraryView {
     public void displayEditDVDSuccessBanner() {
         io.readString("DVD entry edited. Press ENTER to continue.");
     }
+    
+    /**
+     * Display closing Edit DVD banner for UI if no DVD exists to edit
+     */
+    public void displayEditDVDFailBanner(){
+        io.readString("Cannot edit non-existent DVD. Press ENTER to continue");
+    }
 
     /*4 - LIST ALL DVD'S IN LIBRARY*/
     /**

@@ -19,7 +19,7 @@ public interface DVDLibraryDAO {
     /**
      * List DVD's in library
      *
-     * @return {List} library of DVD objections
+     * @return {List} library of DVD objects
      * @throws DVDLibraryDAOException if cannot load LIBRARY_FILE
      */
     List<DVD> getLibrary() throws DVDLibraryDAOException;
