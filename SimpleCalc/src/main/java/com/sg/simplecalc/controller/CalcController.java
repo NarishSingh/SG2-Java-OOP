@@ -59,10 +59,6 @@ public class CalcController {
                         break;
                     }
                     case 7: {
-                        //sqrt
-                        break;
-                    }
-                    case 8: {
                         //exit
                         break;
                     }
@@ -80,11 +76,13 @@ public class CalcController {
     private void addNum() throws CalcDAOException{
         view.displayAddBanner();
         Calculation newCalc=view.getNewCalc(1);
-        //TODO dao - log calculation
+        //TODO need to do the actual calculation
+        //TODO need to log the result
+        dao.logCalc(newCalc.getTimestampID(), newCalc);
         view.displayCalcSuccess();
     }
     
-    
+    /*VIEW/UI ONLY METHODS*/
     /**
      * Get input for menu choice
      *

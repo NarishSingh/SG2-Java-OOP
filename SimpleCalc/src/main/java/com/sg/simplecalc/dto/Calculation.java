@@ -17,7 +17,7 @@ public class Calculation {
     private String operation;
     private double result;
 
-    /*ctor*/
+    /*ctors*/
     public Calculation(long timestampID) {
         this.timestampID = timestampID;
     }

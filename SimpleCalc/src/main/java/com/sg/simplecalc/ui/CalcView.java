@@ -30,10 +30,9 @@ public class CalcView {
         io.print("4 | Division | /");
         io.print("5 | Remainder of Division | %");
         io.print("6 | Exponent | ^");
-        io.print("7 | Square Root");
-        io.print("8 | Exit");
+        io.print("7 | Exit");
 
-        return io.readInt("Action", 1, 8);
+        return io.readInt("Action", 1, 7);
     }
 
     public String opAsString(int operation) {
@@ -55,9 +54,6 @@ public class CalcView {
             }
             case 6: {
                 return "^";
-            }
-            case 7: {
-                return "sqrt.";
             }
             default: {
                 throw new IllegalArgumentException("Unknown command");
