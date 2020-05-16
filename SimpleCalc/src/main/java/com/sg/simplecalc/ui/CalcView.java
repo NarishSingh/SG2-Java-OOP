@@ -1,6 +1,7 @@
 package com.sg.simplecalc.ui;
 
 import com.sg.simplecalc.dto.Calculation;
+import java.util.*;
 
 /**
  * Practice with MVC
@@ -23,16 +24,19 @@ public class CalcView {
      * @return {int} 1-8 for menu choice
      */
     public int printMenuGetSelection() {
-        io.print("Calculations:");
+        io.print("===New Calculation===");
         io.print("1 | Addition | +");
         io.print("2 | Subtraction | -");
         io.print("3 | Multiplication | *");
         io.print("4 | Division | /");
         io.print("5 | Remainder of Division | %");
         io.print("6 | Exponent | ^");
-        io.print("7 | Exit");
+        io.print("===Log===");
+        io.print("7 | Calculation Log");
+        io.print("8 | Clear Log");
+        io.print("0 | Exit");
 
-        return io.readInt("Action", 1, 7);
+        return io.readInt("Action", 0, 8);
     }
 
     public String opAsString(int operation) {
@@ -61,6 +65,7 @@ public class CalcView {
         }
     }
 
+    /*ALL*/
     public Calculation getNewCalc(int operation) {
         double a = io.readDouble("Enter first number: ");
         double b = io.readDouble("Enter second number: ");
@@ -75,6 +80,10 @@ public class CalcView {
     public void displayCalcSuccess() {
         io.readString("Computation complete. Press ENTER to continue");
     }
+    
+    public void displayResult(Calculation calc){
+        io.print(String.valueOf(calc.getResult()));
+    }
 
     /*1 - (+)*/
     public void displayAddBanner() {
@@ -82,12 +91,74 @@ public class CalcView {
     }
 
     /*2 - (-)*/
- /*3 - (*)*/
- /*4 - (/)*/
- /*5 - (%)*/
- /*6 - (^)*/
- /*7 - (SQRT)*/
- /*8 - EXIT*/
+    public void displaySubtractBanner() {
+        io.print("===Subtraction===");
+    }
+
+    /*3 - (*)*/
+    public void displayMultiplicationBanner() {
+        io.print("===Multiplication===");
+    }
+
+    /*4 - (/)*/
+    public void displayDivisionBanner() {
+        io.print("===Division===");
+    }
+
+    /*5 - (%)*/
+    public void displayModuloBanner() {
+        io.print("===Remainder of Division===");
+    }
+
+    /*6 - (^)*/
+    public void displayExponentBanner() {
+        io.print("===Exponent===");
+    }
+
+    /*7 - see log*/
+    public void displayLogBanner() {
+        io.print("===log===");
+    }
+
+    public void displayLog(List<Calculation> calcLog) {
+        for (Calculation c : calcLog) {
+            io.print(c.getTimestampID() + " | " + c.getFirstNum() + " "
+                    + c.getOperation() + " " + c.getSecondNum() + " = " + c.getResult());
+        }
+
+        io.readString("Press ENTER to continue.");
+    }
+
+    public void displayLogEmptyBanner() {
+        io.print("No calculations to show.");
+    }
+
+    /*8 - clear log*/
+    public void displayClearLogBanner() {
+        io.print("===Clear Log===");
+    }
+
+    public boolean getClearConfirm() {
+        io.print("Clear calculation log? Please enter:");
+        io.print("y - clear | n - cancel");
+        String clearConfirm = io.readString("Enter: ");
+
+        if (clearConfirm.equals("y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void displayClearSuccessBanner() {
+        io.print("Log cleared successfully");
+    }
+
+    public void displayClearFailBanner() {
+        io.print("Canceled. Log still viewable.");
+    }
+
+    /*0 - EXIT*/
     /**
      * Display Exit banner in UI
      */

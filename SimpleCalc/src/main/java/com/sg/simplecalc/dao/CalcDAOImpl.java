@@ -10,45 +10,57 @@ public class CalcDAOImpl implements CalcDAO {
     private static final String CALC_LOG_FILE = "CalculationLog.txt";
     private static final String DELIMITER = "::";
 
-    //TODO implement methods
     @Override
-    public Calculation performCalc(Calculation calc) throws CalcDAOException {
+    public Calculation performCalc(Calculation calc) {
         String operation = calc.getOperation();
 
         switch (operation) {
             case "+": {
-
+                calc.setResult(calc.getFirstNum() + calc.getSecondNum());
                 break;
             }
             case "-": {
-
+                calc.setResult(calc.getFirstNum() - calc.getSecondNum());
                 break;
             }
             case "*": {
-
+                calc.setResult(calc.getFirstNum() * calc.getSecondNum());
                 break;
             }
             case "/": {
+                if (calc.getSecondNum() == 0) {
+                    throw new IllegalArgumentException("Cannot divide by 0");
+                } else {
+                    calc.setResult(calc.getFirstNum() / calc.getSecondNum());
+                }
 
                 break;
             }
             case "%": {
+                if (calc.getSecondNum() == 0) {
+                    throw new IllegalArgumentException("Cannot divide by 0");
+                } else {
+                    calc.setResult(calc.getFirstNum() % calc.getSecondNum());
+                }
 
                 break;
             }
             case "^": {
-
+                calc.setResult(Math.pow(calc.getFirstNum(), calc.getSecondNum()));
                 break;
             }
             default: {
                 throw new IllegalArgumentException("Unknown Command.");
             }
         }
+        
+        return calc;
     }
 
     @Override
     public Calculation logCalc(long ID, Calculation calc) throws CalcDAOException {
         loadLog();
+
         Calculation newCalc = log.put(ID, calc);
         writeLog();
 
@@ -57,17 +69,26 @@ public class CalcDAOImpl implements CalcDAO {
 
     @Override
     public List<Calculation> getLog() throws CalcDAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadLog();
+        return new ArrayList(log.values());
     }
 
     @Override
     public Calculation getCalc(long timestampID) throws CalcDAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadLog();
+        return log.get(timestampID);
     }
 
     @Override
-    public List<Calculation> clearLog() throws CalcDAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void clearLog() throws CalcDAOException {
+        loadLog();
+
+        Set<Long> logKeys = log.keySet();
+        for (Long logKey : logKeys) {
+            log.remove(logKey);
+        }
+
+        writeLog();
     }
 
     /*Data (Un)marshalling*/
