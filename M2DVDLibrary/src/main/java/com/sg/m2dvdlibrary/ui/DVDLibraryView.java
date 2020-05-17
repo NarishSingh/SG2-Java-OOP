@@ -35,12 +35,36 @@ public class DVDLibraryView {
      * @return {DVD} a DVD obj with all fields filled
      */
     public DVD getNewDVDInfo() {
-        String title = io.readString("Enter DVD title: ");
-        String releaseDate = io.readString("Enter release date: ");
-        String director = io.readString("Enter director's name: ");
-        String studio = io.readString("Enter studio name: ");
-        String mpaaRating = io.readString("Enter MPAA rating: ");
-        String userRating = io.readString("Enter your own personal rating, or comments: ");
+        String title;
+        String releaseDate;
+        String director;
+        String studio;
+        String mpaaRating;
+        String userRating;
+
+        do {
+            title = io.readString("Enter DVD title: ");
+        } while (title.equals(""));
+        
+        do {
+            releaseDate = io.readString("Enter release date: ");
+        } while (releaseDate.equals(""));
+
+        do {
+            director = io.readString("Enter director's name: ");
+        } while (director.equals(""));
+
+        do {
+            studio = io.readString("Enter studio name: ");
+        } while (studio.equals(""));
+
+        do {
+            mpaaRating = io.readString("Enter MPAA rating: ");
+        } while (mpaaRating.equals(""));
+
+        do {
+            userRating = io.readString("Enter your own personal rating, or comments: ");
+        } while (userRating.equals(""));
 
         DVD currentDVD = new DVD(title);
         currentDVD.setReleaseDate(releaseDate);
@@ -107,11 +131,31 @@ public class DVDLibraryView {
      *                  used to overwrite entry in library
      */
     public void editDVDEntry(DVD editedDVD) {
-        String newReleaseDate = io.readString("Enter release date: ");
-        String newDirector = io.readString("Enter director's name: ");
-        String newStudio = io.readString("Enter studio name: ");
-        String newMpaaRating = io.readString("Enter MPAA rating: ");
-        String newUserRating = io.readString("Enter your own personal rating, or comments: ");
+        String newReleaseDate;
+        String newDirector;
+        String newStudio;
+        String newMpaaRating;
+        String newUserRating;
+
+        do {
+            newReleaseDate = io.readString("Enter release date: ");
+        } while (newReleaseDate.equals(""));
+
+        do {
+            newDirector = io.readString("Enter director's name: ");
+        } while (newDirector.equals(""));
+
+        do {
+            newStudio = io.readString("Enter studio name: ");
+        } while (newStudio.equals(""));
+
+        do {
+            newMpaaRating = io.readString("Enter MPAA rating: ");
+        } while (newMpaaRating.equals(""));
+
+        do {
+            newUserRating = io.readString("Enter your own personal rating, or comments: ");
+        } while (newUserRating.equals(""));
 
         editedDVD.setReleaseDate(newReleaseDate);
         editedDVD.setDirector(newDirector);
@@ -133,11 +177,11 @@ public class DVDLibraryView {
     public void displayEditDVDSuccessBanner() {
         io.readString("DVD entry edited. Press ENTER to continue.");
     }
-    
+
     /**
      * Display closing Edit DVD banner for UI if no DVD exists to edit
      */
-    public void displayEditDVDFailBanner(){
+    public void displayEditDVDFailBanner() {
         io.readString("Cannot edit non-existent DVD. Press ENTER to continue");
     }
 
@@ -145,7 +189,7 @@ public class DVDLibraryView {
     /**
      * Display all DVD titles in library
      *
-     * @param dvdList {List} DVD library keyset
+     * @param dvdList {List} DVD library key set
      */
     public void displayLibrary(List<DVD> dvdList) {
         for (DVD currentDVD : dvdList) {
@@ -161,11 +205,11 @@ public class DVDLibraryView {
     public void displayDisplayLibraryBanner() {
         io.print("===Display Library===");
     }
-    
+
     /**
      * Display Library Empty banner for UI if no titles are in library
      */
-    public void displayLibraryEmptyBanner(){
+    public void displayLibraryEmptyBanner() {
         io.readString("Library is currently empty. Press ENTER to continue");
     }
 
