@@ -46,7 +46,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
     /**
      * translate a delimited line of text from LIBRARY_FILE into a DVD obj
      *
-     * @param dvdAsText {String} delimited by :: (DELIMITER)
+     * @param dvdAsText {String} delimited by ::
      * @return {DVD} obj with all fields filled
      */
     private DVD unmarshallDVD(String dvdAsText) {
@@ -67,7 +67,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
     /**
      * Read in a file and construct DVD obj from delimited lines of text
      *
-     * @throws DVDLibraryDAOException if file cannot be
+     * @throws DVDLibraryDAOException if file cannot be read from
      */
     private void loadLibrary() throws DVDLibraryDAOException {
         Scanner sc;
@@ -95,7 +95,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
      * Marshall data from a DVD obj to text
      *
      * @param aDVD {DVD} obj with all fields from library
-     * @return {String} the DVD obj as delimited String
+     * @return {String} the DVD obj as delimited line of text
      */
     private String marshallDVD(DVD aDVD) {
         String dvdAsText = aDVD.getTitle() + DELIMITER;
@@ -111,7 +111,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
     /**
      * Writes all DVD's in library to LIBRARY_FILE
      *
-     * @throws DVDLibraryDAOException {IOException} if cannot write to txt file
+     * @throws DVDLibraryDAOException {IOException} if cannot write to .txt file
      */
     private void writeLibrary() throws DVDLibraryDAOException {
         PrintWriter out;
