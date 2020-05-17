@@ -4,7 +4,6 @@ import com.sg.simplecalc.dao.CalcDAO;
 import com.sg.simplecalc.dao.CalcDAOException;
 import com.sg.simplecalc.dto.Calculation;
 import com.sg.simplecalc.ui.CalcView;
-import com.sg.simplecalc.ui.UserIO;
 import java.util.*;
 
 /**
@@ -14,7 +13,6 @@ import java.util.*;
  */
 public class CalcController {
 
-    private UserIO io;
     private CalcDAO dao;
     private CalcView view;
 
@@ -84,6 +82,12 @@ public class CalcController {
     }
 
     /*1 - (+)*/
+    /**
+     * Display Addition banners. Construct new calculation obj, do the addition
+     * and save result. Log calculation to file
+     *
+     * @throws CalcDAOException if file cannot be written to
+     */
     private void addNum() throws CalcDAOException {
         view.displayAddBanner();
         Calculation newCalc = view.getNewCalc(1);
@@ -94,6 +98,12 @@ public class CalcController {
     }
 
     /*2 - (-)*/
+    /**
+     * Display Subtraction banners. Construct new calculation obj, do the
+     * subtraction and save result. Log calculation to file
+     *
+     * @throws CalcDAOException if file cannot be written to
+     */
     private void subtractNum() throws CalcDAOException {
         view.displaySubtractBanner();
         Calculation newCalc = view.getNewCalc(2);
@@ -104,6 +114,12 @@ public class CalcController {
     }
 
     /*3 - (*)*/
+    /**
+     * Display Multiplication banners. Construct new calculation obj, do the
+     * multiplication and save result. Log calculation to file
+     *
+     * @throws CalcDAOException if file cannot be written to
+     */
     private void multiplyNum() throws CalcDAOException {
         view.displayMultiplicationBanner();
         Calculation newCalc = view.getNewCalc(3);
@@ -114,6 +130,13 @@ public class CalcController {
     }
 
     /*4 - (/)*/
+    /**
+     * Display Division banners. Construct new calculation obj, do the division
+     * and save result (will throw an error if dividing by zero). Log
+     * calculation to file
+     *
+     * @throws CalcDAOException if file cannot be written to
+     */
     private void divideNum() throws CalcDAOException {
         view.displayDivisionBanner();
         Calculation newCalc = view.getNewCalc(4);
@@ -124,6 +147,13 @@ public class CalcController {
     }
 
     /*5 - (%)*/
+    /**
+     * Display Remainder of Division banners. Construct new calculation obj, do
+     * the division and save the remainder result (will throw an error if
+     * dividing by zero). Log calculation to file
+     *
+     * @throws CalcDAOException if file cannot be written to
+     */
     private void moduloNum() throws CalcDAOException {
         view.displayModuloBanner();
         Calculation newCalc = view.getNewCalc(5);
@@ -134,6 +164,12 @@ public class CalcController {
     }
 
     /*6 - (^)*/
+    /**
+     * Display Exponent banners. Construct new calculation obj, find the
+     * exponent and save result. Log calculation to file
+     *
+     * @throws CalcDAOException if file cannot be written to
+     */
     private void exponentNum() throws CalcDAOException {
         view.displayModuloBanner();
         Calculation newCalc = view.getNewCalc(6);
@@ -144,6 +180,12 @@ public class CalcController {
     }
 
     /*7 - log*/
+    /**
+     * Display the Display Log banners. Show log of all previous calculations,
+     * timestamped, or give feedback if log is empty
+     *
+     * @throws CalcDAOException if file cannot be read
+     */
     private void listLog() throws CalcDAOException {
         view.displayLogBanner();
         List<Calculation> calcList = dao.getLog();
@@ -155,6 +197,12 @@ public class CalcController {
     }
 
     /*8 - clear log*/
+    /**
+     * Display Clear Log banners. Get confirmation to clear log, clearing log or
+     * leaving it intact
+     *
+     * @throws CalcDAOException if file cannot be read or written to
+     */
     private void clearCalcLog() throws CalcDAOException {
         view.displayClearLogBanner();
         if (view.getClearConfirm()) {

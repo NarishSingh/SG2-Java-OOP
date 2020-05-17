@@ -53,7 +53,7 @@ public class CalcDAOImpl implements CalcDAO {
                 throw new IllegalArgumentException("Unknown Command.");
             }
         }
-        
+
         return calc;
     }
 
@@ -82,16 +82,17 @@ public class CalcDAOImpl implements CalcDAO {
     @Override
     public void clearLog() throws CalcDAOException {
         loadLog();
-
-        Set<Long> logKeys = log.keySet();
-        for (Long logKey : logKeys) {
-            log.remove(logKey);
-        }
-
+        log.clear();
         writeLog();
     }
 
     /*Data (Un)marshalling*/
+    /**
+     * Unmarshall a line of text and construct Calculation obj from it
+     *
+     * @param calcAsText {String} a line of text in the log file
+     * @return {Calculation} obj with all fields filled in
+     */
     private Calculation unmarshallCalc(String calcAsText) {
         String[] calcTokens = calcAsText.split(DELIMITER);
 
@@ -106,6 +107,13 @@ public class CalcDAOImpl implements CalcDAO {
         return calcFromLog;
     }
 
+    /**
+     * Marshall a Calculation obj to delimited line of text for log file
+     *
+     * @param calc {Calculation} obj to be marshalled
+     * @return {String} a delimited String containing all fields for a
+     *         Calculation obj
+     */
     private String marshallCalc(Calculation calc) {
         String calcAsText = calc.getTimestampID() + DELIMITER;
         calcAsText += calc.getFirstNum() + DELIMITER;
@@ -116,6 +124,11 @@ public class CalcDAOImpl implements CalcDAO {
         return calcAsText;
     }
 
+    /**
+     * Marshall all Calculation obj's to log file
+     *
+     * @throws CalcDAOException if log cannot be written to
+     */
     private void writeLog() throws CalcDAOException {
         PrintWriter out;
 
@@ -137,6 +150,12 @@ public class CalcDAOImpl implements CalcDAO {
         out.close();
     }
 
+    /**
+     * Unmarshall delimited lines of text and unload Calculation obj's to
+     * HashMap
+     *
+     * @throws CalcDAOException if log cannot be read from
+     */
     private void loadLog() throws CalcDAOException {
         Scanner sc;
 

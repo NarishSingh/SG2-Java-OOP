@@ -11,8 +11,7 @@ import java.util.*;
 public class CalcView {
 
     private UserIO io;
-
-    /*ctor*/
+    
     public CalcView(UserIO io) {
         this.io = io;
     }
@@ -21,7 +20,7 @@ public class CalcView {
     /**
      * Print UI menu and get selection
      *
-     * @return {int} 1-8 for menu choice
+     * @return {int} 0-8 for menu choice
      */
     public int printMenuGetSelection() {
         io.print("===New Calculation===");
@@ -36,9 +35,14 @@ public class CalcView {
         io.print("8 | Clear Log");
         io.print("0 | Exit");
 
-        return io.readInt("Action", 0, 8);
+        return io.readInt("Action: ", 0, 8);
     }
 
+    /**
+     * Convert numerical input to String
+     * @param operation {int} user's menu selection
+     * @return {String} the operation to be stored in Calculation obj's
+     */
     public String opAsString(int operation) {
         switch (operation) {
             case 1: {
@@ -66,6 +70,11 @@ public class CalcView {
     }
 
     /*ALL*/
+    /**
+     * Get numbers for a new Calculation obj
+     * @param operation {int} fill in operation field of obj from user's menu selection
+     * @return {Calculation} obj with all fields filled sans the result
+     */
     public Calculation getNewCalc(int operation) {
         double a = io.readDouble("Enter first number: ");
         double b = io.readDouble("Enter second number: ");
@@ -75,51 +84,80 @@ public class CalcView {
     }
 
     /**
+     * Display result as string
+     * @param calc {Calculation} obj whose result is to be printed to console
+     */
+    public void displayResult(Calculation calc){
+        io.print(String.valueOf(calc.getResult()));
+    }
+    
+    /**
      * display closing calculation success banner for UI
      */
     public void displayCalcSuccess() {
         io.readString("Computation complete. Press ENTER to continue");
     }
-    
-    public void displayResult(Calculation calc){
-        io.print(String.valueOf(calc.getResult()));
-    }
 
     /*1 - (+)*/
+    /**
+     * display opening Addition banner for UI
+     */
     public void displayAddBanner() {
         io.print("===Addition===");
     }
 
     /*2 - (-)*/
+    /**
+     * display opening Subtraction banner for UI
+     */
     public void displaySubtractBanner() {
         io.print("===Subtraction===");
     }
 
     /*3 - (*)*/
+    /**
+     * display opening Multiplication banner for UI
+     */
     public void displayMultiplicationBanner() {
         io.print("===Multiplication===");
     }
 
     /*4 - (/)*/
+    /**
+     * display opening Division banner for UI
+     */
     public void displayDivisionBanner() {
         io.print("===Division===");
     }
 
     /*5 - (%)*/
+    /**
+     * display opening Modulo banner for UI
+     */
     public void displayModuloBanner() {
         io.print("===Remainder of Division===");
     }
 
     /*6 - (^)*/
+    /**
+     * display opening Exponent banner for UI
+     */
     public void displayExponentBanner() {
         io.print("===Exponent===");
     }
 
     /*7 - see log*/
+    /**
+     * display opening Log banner for UI
+     */
     public void displayLogBanner() {
-        io.print("===log===");
+        io.print("===Log===");
     }
 
+    /**
+     * Display calculation log
+     * @param calcLog {List} List of all Calculation obj
+     */
     public void displayLog(List<Calculation> calcLog) {
         for (Calculation c : calcLog) {
             io.print(c.getTimestampID() + " | " + c.getFirstNum() + " "
@@ -129,15 +167,26 @@ public class CalcView {
         io.readString("Press ENTER to continue.");
     }
 
+    /**
+     * Display closing Log banner 
+     */
     public void displayLogEmptyBanner() {
         io.print("No calculations to show.");
+        io.readString("Press ENTER to continue.");
     }
 
     /*8 - clear log*/
+    /**
+     * Display opening Clear Log banner
+     */
     public void displayClearLogBanner() {
         io.print("===Clear Log===");
     }
 
+    /**
+     * Get confirmation to clear log, and clear if so
+     * @return {boolean} indicating if log has been cleared
+     */
     public boolean getClearConfirm() {
         io.print("Clear calculation log? Please enter:");
         io.print("y - clear | n - cancel");
@@ -150,12 +199,20 @@ public class CalcView {
         }
     }
 
+    /**
+     * Display closing Clear banner if successfully cleared
+     */
     public void displayClearSuccessBanner() {
         io.print("Log cleared successfully");
+        io.readString("Press ENTER to continue.");
     }
 
+    /**
+     * Display closing Clear banner if unsuccessfully cleared
+     */
     public void displayClearFailBanner() {
         io.print("Canceled. Log still viewable.");
+        io.readString("Press ENTER to continue.");
     }
 
     /*0 - EXIT*/
