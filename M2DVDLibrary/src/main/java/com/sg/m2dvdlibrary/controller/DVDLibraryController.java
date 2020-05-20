@@ -6,6 +6,8 @@ import com.sg.m2dvdlibrary.dto.DVD;
 import com.sg.m2dvdlibrary.ui.DVDLibraryView;
 import com.sg.m2dvdlibrary.ui.UserIO;
 import com.sg.m2dvdlibrary.ui.UserIOImpl;
+
+//TODO can only import the service layer
 import java.util.List;
 
 public class DVDLibraryController {
@@ -125,7 +127,7 @@ public class DVDLibraryController {
 
     /**
      * Display banners for DVD library titles listing. Retrieve and display
-     * titles from keyset of library HashMap
+     * titles from key set of library HashMap
      *
      * @throws DVDLibraryDAOException if cannot read from library
      */

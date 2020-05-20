@@ -42,7 +42,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
         return removedDVD;
     }
 
-    /*Data Unmarshalling*/
+    /*Data (Un)marshalling*/
     /**
      * translate a delimited line of text from LIBRARY_FILE into a DVD obj
      *

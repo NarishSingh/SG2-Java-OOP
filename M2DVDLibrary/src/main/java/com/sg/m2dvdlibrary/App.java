@@ -1,15 +1,26 @@
 /*
-In this assessment, you will create a program that stores information about a DVD collection. The program must do the following:
+Stretch Goal V2
 
--Allow the user to add a DVD to the collection
--Allow the user to remove a DVD from the collection
--Allow the user to edit the information for an existing DVD in the collection
--Allow the user to list the DVDs in the collection
--Allow the user to display the information for a particular DVD
--Allow the user to search for a DVD by title
--Load the DVD library from a file
--Save the DVD library back to the file when the program completes
--Allow the user to add, edit, or delete many DVDs in one session
+DVD Library Entension : Loan Process
+The idea is to extend your existing DVD Library project to allow a few more
+opperations by the user. NOTE: You should probably do this work in a separate
+repo or branch, as to not break your current finished assignment. Here are the
+additional requirements:
+1. Implement a Service layer. This will have an interface and a single
+implementation. This service will now have access to your DAO(s) and your
+controller will have access to your Service.
+2. Implement a User object. This will include a DTO, DAO, and access to the DAO
+will be in your new service layer. You will also need controller and view
+functionality that will allow your CRUD functionality for the User class.
+3. Allow the user of the application to check out and check in DVD's from to and
+from a User. This may mean changes to your DTO's. Your functionality that checks
+to see if the book is already loaned or if it is available will be done within
+your service.
+4. Before implementing any of these new features, build out your new updated UML
+and use it to design and construct the new features. Plan, then build.
+If you have any questions, feel free to reach out, but understand that this is a
+stretch assignment. It is not entended to be graded, but to allow you a bit more
+
  */
 package com.sg.m2dvdlibrary;
 

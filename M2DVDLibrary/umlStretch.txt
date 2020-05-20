@@ -1,0 +1,210 @@
+@startuml
+
+title M2 Assessment - DVD Library
+
+package com.sg.m2dvdlibrary {
+  class App{
+    +main(): static void
+  }
+}
+
+package com.sg.m2dvdlibrary.service {
+  +interface DVDServiceDao{
+    'DAO pass thru. data gatekeeper?
+
+    -dao: DVDLibraryDAO
+
+    -checkTitleInLibrary(): boolean
+    -checkLibraryEmpty(): boolean
+    -checkDVDBorrowStatus(): boolean
+    -checkUserFines(): double
+
+    +createDVD(): void
+    +removeDVD(): void
+    +editDVD(): void
+    +listLibrary(): void
+    +viewDVD(): void
+  }
+  
+  class DVDServiceDaoImpl{
+    
+    
+    
+  }
+}
+
+package com.sg.m2dvdlibrary.controller {
+  class DVDLibrayController{
+    -io: UserIO
+    /'-dao: DVDLibraryDAO'/
+    -view: DVDLibraryView
+    
+    +DVDLibraryController(): {dao: DVDLibraryDAO, view: DVDLibraryView}
+    
+    +run(): void
+    -getMenuSelection(): int
+    /'
+    -createDVD(): void
+    -removeDVD(): void
+    -editDVD(): void
+    -listLibrary(): void
+    -viewDVD(): void
+    '/
+    -unknownCommand(): void
+    -exitMessage(): void
+  }
+}
+
+package com.sg.m2dvdlibrary.dao {
+  +interface DVDLibraryDAO{
+    +addDVD(): DVD {title: String, dvd: DVD}
+    +getLibrary(): List<DVD>
+    +getDVD(): DVD {title: String}
+    +removeDVD(): DVD {title: String}
+  }
+  
+  class DVDLibraryDAOImpl{
+    -library: Map<String, DVD>
+    -LIBRARY_FILE: String
+    -DELIMITER: String
+    
+    /'
+    +addDVD(): DVD {title: String, dvd: DVD}
+    +getLibrary(): List<DVD>
+    +getDVD(): DVD {title: String}
+    +removeDVD(): DVD {title: String}
+    '/
+    -unmarshallDVD(): DVD {dvdAsText: String}
+    -loadLibrary(): void
+    -marshallDVD(): String {aDVD: DVD}
+    -writeLibrary(): void
+  }
+  
+  class DVDLibraryDAOException <<Exception>> {
+    +DVDLibraryDAOException(): {message: String}
+    +DVDLibraryDAOException(): {message: String, Throwable cause}
+  }
+  
+  DVDLibraryDAO <|-down- DVDLibraryDAOImpl: implements
+  
+  +interface UserDataDAO{
+    
+  }
+  
+  class UserDataDAOImpl {
+    
+    
+    -unmarshallUser(): User {userAsText: String}
+    -loadUser(): void
+    -marshallUser(): String {aUser: User}
+    -writeUser(): void
+  }
+  
+  UserDataDAO <|-down- UserDataDAOImpl: implements
+}
+
+package com.sg.m2dvdlibrary.dto {
+  class DVD{
+    -title: String
+    -releaseDate: String
+    -director: String
+    -studio: String
+    -mpaaRating: String
+    -userRating: String
+    
+    +DVD(): {title: String}
+    
+    +getTitle(): String 'read-only
+    +getReleaseDate(): String
+    +setReleaseDate(): void {releaseDate: String}
+    +getDirector(): String
+    +setDirector(): void {director: String}
+    +getStudio(): String
+    +setStudio(): void {studio: String}
+    +getMpaaRating(): String
+    +setMpaaRating(): void {mpaaRating: String}
+    +getUserRating(): String
+    +setUserRating(): void {userRating: String}
+  }
+  
+  class User{
+    -name: String
+    -borrowedDVD: boolean
+    -titlesBorrowed: DVD[]
+    -borrowDate: String
+    -returnDate: String
+    -overdueFineTotal: double
+    
+    +User(): {fullName: String}
+    
+    +getName(): String 'read-only
+    +getBorrowedDVD(): boolean
+    +setBorrowedDVD(): void {borrowedDVD: boolean}
+    +getTitlesBorrowed(): DVD[]
+    +setTitlesBorrowed(): void {titlesBorrowed: DVD[]}
+    +getBorrowDate(): String
+    +setBorrowDate(): void {borrowDate: String}
+    +getReturnDate(): String
+    +setReturnDate(): void {returnDate: String}
+    +getOverdueFineTotal(): double
+    +setOverdueFineTotal(): void {overdueFineTotal: double}
+  }
+}
+
+package com.sg.m2dvdlibrary.ui {
+  class DVDLibraryView{
+    -io: UserIO
+    
+    +DVDLibraryView(): {io: UserIO}
+    
+    +printMenuGetSelection(): int
+    +getNewDVDInfo(): DVD
+    +displayNewDVDInfo(): void
+    +displayNewDVDSuccessBanner(): void
+    +displayRemoveDVDBanner(): void
+    +displayRemoveResult(): void {dvdEntry: DVD}
+    +getDVDTitle(): String
+    +editDVDEntry(): void {editedDVD: DVD}
+    +displayEditDVDBanner(): void
+    +displayEditDVDSuccessBanner(): void
+    +displayLibrary(): void {dvdList: List<DVD>}
+    +displayDisplayLibraryBanner(): void
+    +getDVDEntry(): void {dvd: DVD}
+    +displayDisplayDVDBanner(): void
+    +displayExitBanner(): void
+    +displayUnknownCommandBanner(): void
+    +displayErrorMessage(): void {errorMsg: String}
+  }
+  
+  +interface UserIO{
+    +print(): void {message: String}
+    +readString(): String {prompt: String}
+    +readInt(): int {prompt: String}
+    +readInt(): int {prompt: String, min: int, max: int}
+    +readDouble(): double {prompt: String}
+    +readDouble(): double {prompt: String, min: double, max: double}
+    +readFloat(): float {prompt: String}
+    +readFloat(): float {prompt: String, min: float, max: float}
+    +readLong(): long {prompt: String}
+    +readLong(): long {prompt: String, min: long, max: long}
+  }
+  
+  class UserIOImpl{
+    -input: Scanner
+    
+    +print(): void {message: String}
+    +readString(): String {prompt: String}
+    +readInt(): int {prompt: String}
+    +readInt(): int {prompt: String, min: int, max: int}
+    +readDouble(): double {prompt: String}
+    +readDouble(): double {prompt: String, min: double, max: double}
+    +readFloat(): float {prompt: String}
+    +readFloat(): float {prompt: String, min: float, max: float}
+    +readLong(): long {prompt: String}
+    +readLong(): long {prompt: String, min: long, max: long}
+  }
+  
+  UserIO <|-down- UserIOImpl: implements
+}
+
+@enduml

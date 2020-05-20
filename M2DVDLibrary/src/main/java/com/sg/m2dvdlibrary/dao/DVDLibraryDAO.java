@@ -11,7 +11,7 @@ public interface DVDLibraryDAO {
      *
      * @param title {String} title associated with DVD
      * @param dvd   {DVD} DVD object
-     * @return {DVD|null} obj for the associated/added title, null otherwise
+     * @return {DVD} obj for the associated/added title, null otherwise
      * @throws DVDLibraryDAOException
      */
     DVD addDVD(String title, DVD dvd) throws DVDLibraryDAOException;
@@ -28,7 +28,7 @@ public interface DVDLibraryDAO {
      * Gets DVD obj associated with title
      *
      * @param title {String} title of DVD object to retrieve
-     * @return {DVD} the DVD objected associated with totle
+     * @return {DVD} the DVD objected associated with title
      * @throws DVDLibraryDAOException if cannot load LIBRARY_FILE
      */
     DVD getDVD(String title) throws DVDLibraryDAOException;
@@ -38,7 +38,7 @@ public interface DVDLibraryDAO {
      * library
      *
      * @param title {String} the title of DVD to be removed from library
-     * @return {DVD|null} DVD obj removed, or null if nothing could be removed
+     * @return {DVD} DVD obj removed, or null if nothing could be removed
      * @throws DVDLibraryDAOException if library cannot be loaded or written to
      */
     DVD removeDVD(String title) throws DVDLibraryDAOException;
