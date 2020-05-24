@@ -25,8 +25,8 @@ stretch assignment. It is not entended to be graded, but to allow you a bit more
 package com.sg.m2dvdlibrary;
 
 import com.sg.m2dvdlibrary.controller.DVDLibraryController;
-import com.sg.m2dvdlibrary.dao.DVDLibraryDAO;
-import com.sg.m2dvdlibrary.dao.DVDLibraryDAOImpl;
+import com.sg.m2dvdlibrary.service.ServiceDAO;
+import com.sg.m2dvdlibrary.service.ServiceDAOImpl;
 import com.sg.m2dvdlibrary.ui.DVDLibraryView;
 import com.sg.m2dvdlibrary.ui.UserIO;
 import com.sg.m2dvdlibrary.ui.UserIOImpl;
@@ -36,8 +36,9 @@ public class App {
     public static void main(String[] args) {
         UserIO io = new UserIOImpl();
         DVDLibraryView v = new DVDLibraryView(io);
-        DVDLibraryDAO dao = new DVDLibraryDAOImpl();
-        DVDLibraryController c = new DVDLibraryController(dao, v);
+//        DVDLibraryDAO dao = new DVDLibraryDAOImpl();
+        ServiceDAO serv=new ServiceDAOImpl();
+        DVDLibraryController c = new DVDLibraryController(serv, v);
 
         c.run();
     }

@@ -1,23 +1,20 @@
 package com.sg.m2dvdlibrary.controller;
-
-import com.sg.m2dvdlibrary.dao.DVDLibraryDAO;
 import com.sg.m2dvdlibrary.dao.DVDLibraryDAOException;
 import com.sg.m2dvdlibrary.dto.DVD;
+import com.sg.m2dvdlibrary.service.ServiceDAO;
 import com.sg.m2dvdlibrary.ui.DVDLibraryView;
-import com.sg.m2dvdlibrary.ui.UserIO;
-import com.sg.m2dvdlibrary.ui.UserIOImpl;
 
 //TODO can only import the service layer
 import java.util.List;
 
 public class DVDLibraryController {
-
-    private UserIO io = new UserIOImpl();
-    private DVDLibraryDAO dao;
+    
+    private ServiceDAO service;
     private DVDLibraryView view;
 
-    public DVDLibraryController(DVDLibraryDAO dao, DVDLibraryView view) {
-        this.dao = dao;
+    /*DEPENDENCY INJECTION*/
+    public DVDLibraryController(ServiceDAO service, DVDLibraryView view) {
+        this.service = service;
         this.view = view;
     }
 
@@ -88,7 +85,7 @@ public class DVDLibraryController {
     private void createDVD() throws DVDLibraryDAOException {
         view.displayNewDVDInfo();
         DVD newDVD = view.getNewDVDInfo();
-        dao.addDVD(newDVD.getTitle(), newDVD);
+        service.addDVD(newDVD.getTitle(), newDVD);
         view.displayNewDVDSuccessBanner();
     }
 
@@ -101,7 +98,7 @@ public class DVDLibraryController {
     private void removeDVD() throws DVDLibraryDAOException {
         view.displayRemoveDVDBanner();
         String dvdTitle = view.getDVDTitle();
-        DVD removedDVD = dao.removeDVD(dvdTitle);
+        DVD removedDVD = service.removeDVD(dvdTitle);
         view.displayRemoveResult(removedDVD);
     }
 
@@ -115,10 +112,10 @@ public class DVDLibraryController {
     private void editDVD() throws DVDLibraryDAOException {
         view.displayEditDVDBanner();
         String dvdTitle = view.getDVDTitle();
-        if (dao.getDVD(dvdTitle) != null) {
-            DVD editedDVD = dao.getDVD(dvdTitle);
+        if (service.getDVD(dvdTitle) != null) {
+            DVD editedDVD = service.getDVD(dvdTitle);
             view.editDVDEntry(editedDVD);
-            dao.addDVD(dvdTitle, editedDVD); //will overwrite the value in HashMap
+            service.addDVD(dvdTitle, editedDVD); //will overwrite the value in HashMap
             view.displayEditDVDSuccessBanner();
         } else {
             view.displayEditDVDFailBanner();
@@ -133,7 +130,7 @@ public class DVDLibraryController {
      */
     private void listLibrary() throws DVDLibraryDAOException {
         view.displayDisplayLibraryBanner();
-        List<DVD> dvdList = dao.getLibrary();
+        List<DVD> dvdList = service.getLibrary();
         if (!dvdList.isEmpty()) {
             view.displayLibrary(dvdList);
         } else {
@@ -151,7 +148,7 @@ public class DVDLibraryController {
     public void viewDVD() throws DVDLibraryDAOException {
         view.displayDisplayDVDBanner();
         String dvdTitle = view.getDVDTitle();
-        DVD dvd = dao.getDVD(dvdTitle);
+        DVD dvd = service.getDVD(dvdTitle);
         view.getDVDEntry(dvd);
     }
 
