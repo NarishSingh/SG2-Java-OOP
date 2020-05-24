@@ -9,7 +9,6 @@ public class User {
 
     private String name;
     private String password;
-    private boolean borrowed;
     private boolean loggedIn;
     private List<DVD> titlesBorrowed = new ArrayList<>();
 
@@ -28,15 +27,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password; //FIXME how would I be able to have this as write only?
     }
-    
-    
-    public boolean isBorrowed() {
-        return borrowed;
-    }
-
-    public void setBorrowed(boolean borrowed) {
-        this.borrowed = borrowed;
-    }
 
     public boolean isLoggedIn() {
         return loggedIn;
@@ -51,4 +41,16 @@ public class User {
         return name;
     }
 
+    /*DVD borrowing/returning*/
+    public void borrowDVD(DVD borrowing){
+        titlesBorrowed.add(borrowing);
+    }
+    
+    public void returnDVD(DVD returning){
+        titlesBorrowed.remove(returning);
+    }
+    
+    public List<DVD> borrowList(){
+        return titlesBorrowed;
+    }
 }

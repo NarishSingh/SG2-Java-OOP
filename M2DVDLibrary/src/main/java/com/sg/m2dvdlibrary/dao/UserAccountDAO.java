@@ -12,11 +12,10 @@ public interface UserAccountDAO {
     User removeUser(String name, User user) throws UserAccountDAOException;
     
     boolean logIn(String name, String password) throws UserAccountDAOException; //aka get user
+
+    void borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException;
     
-    //TODO this should be in service?
-    DVD borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException;
-    
-    DVD returnDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException;
+    void returnDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException;
     
     List<DVD> currentlyBorrowed(User account) throws UserAccountDAOException;
 }

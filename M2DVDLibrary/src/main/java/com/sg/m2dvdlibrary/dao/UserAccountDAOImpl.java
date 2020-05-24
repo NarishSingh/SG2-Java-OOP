@@ -5,6 +5,7 @@ import com.sg.m2dvdlibrary.dto.User;
 import java.io.*;
 import java.util.*;
 
+//TODO figure out what to chop from here
 public class UserAccountDAOImpl implements UserAccountDAO {
 
     private final String ACCOUNT_LIST = "dvdLibAccounts.txt";
@@ -17,7 +18,7 @@ public class UserAccountDAOImpl implements UserAccountDAO {
         User newUser = accounts.put(name, user);
 
         //TODO experiment with a way to generate a new log file for a new user
-//        File file=new File("${name} DVDList.txt"); //FIXME is this how to do regular expressions
+//        File file=new File(String.format("%sDVDList.txt", name)); //FIXME is this how to do regular expressions
         writeAccountList();
 
         return newUser;
@@ -40,21 +41,24 @@ public class UserAccountDAOImpl implements UserAccountDAO {
     }
 
     @Override
-    public DVD borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException {
-        //TODO requires the user log file
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException {
+        //TODO implement with user log file
+        loadAccountList();
+        account.borrowDVD(dvdBorrowed);
     }
 
     @Override
-    public DVD returnDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException {
-        //TODO requires the user log file
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void returnDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException {
+        //TODO implement with user log file
+        loadAccountList();
+        account.returnDVD(dvdBorrowed);
     }
 
     @Override
     public List<DVD> currentlyBorrowed(User account) throws UserAccountDAOException {
-        //TODO requires the user log file
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO implement with user log file
+        loadAccountList();
+        return account.borrowList();
     }
 
     /*Data (Un)marshalling*/
