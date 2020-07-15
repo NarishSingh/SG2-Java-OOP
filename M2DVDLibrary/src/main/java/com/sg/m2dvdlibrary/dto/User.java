@@ -10,7 +10,7 @@ public class User {
     private String name;
     private String password;
     private boolean loggedIn;
-    private List<DVD> titlesBorrowed = new ArrayList<>();
+    private Map<String, DVD> titlesBorrowed = new HashMap<>();
 
     /*ctor*/
     public User(String name, String password) {
@@ -36,21 +36,29 @@ public class User {
         this.loggedIn = loggedIn;
     }
 
+    public Map<String, DVD> getTitlesBorrowed() {
+        return titlesBorrowed;
+    }
+
+    public void setTitlesBorrowed(Map<String, DVD> titlesBorrowed) {
+        this.titlesBorrowed = titlesBorrowed;
+    }
+
     /*read only*/
     public String getName() {
         return name;
     }
 
     /*DVD borrowing/returning*/
-    public void borrowDVD(DVD borrowing){
-        titlesBorrowed.add(borrowing);
+    public void borrowDVD(String title, DVD borrowing){
+        titlesBorrowed.put(title, borrowing);
     }
     
-    public void returnDVD(DVD returning){
-        titlesBorrowed.remove(returning);
+    public void returnDVD(String title){
+        titlesBorrowed.remove(title);
     }
     
-    public List<DVD> borrowList(){
-        return titlesBorrowed;
+    public Set<String> borrowList(){
+        return titlesBorrowed.keySet();
     }
 }

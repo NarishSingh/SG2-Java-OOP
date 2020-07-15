@@ -41,21 +41,30 @@ public class UserAccountDAOImpl implements UserAccountDAO {
     }
 
     @Override
-    public void borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException {
+    public boolean borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException {
         //TODO implement with user log file
         loadAccountList();
-        account.borrowDVD(dvdBorrowed);
+        if (dvdBorrowed.isBorrowed() == false) {
+            account.borrowDVD(dvdBorrowed.getTitle(), dvdBorrowed);
+            dvdBorrowed.setBorrowed(true);
+            writeAccountList();
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void returnDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException {
         //TODO implement with user log file
         loadAccountList();
-        account.returnDVD(dvdBorrowed);
+        account.returnDVD(dvdBorrowed.getTitle());
+        dvdBorrowed.setBorrowed(false);
     }
 
     @Override
-    public List<DVD> currentlyBorrowed(User account) throws UserAccountDAOException {
+    public Set<String> currentlyBorrowed(User account) throws UserAccountDAOException {
         //TODO implement with user log file
         loadAccountList();
         return account.borrowList();
@@ -68,19 +77,20 @@ public class UserAccountDAOImpl implements UserAccountDAO {
         String userName = userTokens[0];
         User userFromFile = new User(userTokens[1], userTokens[2]);
 
-        userFromFile.setBorrowed(Boolean.parseBoolean(userTokens[3]));
-        userFromFile.setLoggedIn(Boolean.parseBoolean(userTokens[4]));
+        //TODO unmarshall dvd list
+        userFromFile.setTitlesBorrowed(userTokens[3]); //FIXME idk if this is gonna work
 
         return userFromFile;
     }
 
     private String marshallUser(User aUser) {
-        String userAsTest = aUser.getName() + DELIMITER;
-        userAsTest += aUser.getPassword() + DELIMITER;
-        userAsTest += aUser.isBorrowed() + DELIMITER;
-        userAsTest += aUser.isLoggedIn();
+        String userBorrowList = aUser.borrowList().toString();
 
-        return userAsTest;
+        String userAsText = aUser.getName() + DELIMITER;
+        userAsText += aUser.getPassword() + DELIMITER;
+        userAsText += userBorrowList;
+
+        return userAsText;
     }
 
     private void loadAccountList() throws UserAccountDAOException {

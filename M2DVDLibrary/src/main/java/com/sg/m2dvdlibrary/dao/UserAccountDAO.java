@@ -3,7 +3,7 @@ package com.sg.m2dvdlibrary.dao;
 
 import com.sg.m2dvdlibrary.dto.DVD;
 import com.sg.m2dvdlibrary.dto.User;
-import java.util.List;
+import java.util.*;
 
 public interface UserAccountDAO {
     
@@ -13,9 +13,9 @@ public interface UserAccountDAO {
     
     boolean logIn(String name, String password) throws UserAccountDAOException; //aka get user
 
-    void borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException;
+    boolean borrowDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException;
     
     void returnDVD(User account, DVD dvdBorrowed) throws UserAccountDAOException;
     
-    List<DVD> currentlyBorrowed(User account) throws UserAccountDAOException;
+    Set<String> currentlyBorrowed(User account) throws UserAccountDAOException;
 }

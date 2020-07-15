@@ -61,6 +61,7 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
         dvdFromFile.setStudio(dvdTokens[3]);
         dvdFromFile.setMpaaRating(dvdTokens[4]);
         dvdFromFile.setUserRating(dvdTokens[5]);
+        dvdFromFile.setBorrowed(Boolean.parseBoolean(dvdTokens[6]));
 
         return dvdFromFile;
     }
@@ -104,7 +105,8 @@ public class DVDLibraryDAOImpl implements DVDLibraryDAO {
         dvdAsText += aDVD.getDirector() + DELIMITER;
         dvdAsText += aDVD.getStudio() + DELIMITER;
         dvdAsText += aDVD.getMpaaRating() + DELIMITER;
-        dvdAsText += aDVD.getUserRating();
+        dvdAsText += aDVD.getUserRating() + DELIMITER;
+        dvdAsText += aDVD.isBorrowed();
 
         return dvdAsText;
     }
