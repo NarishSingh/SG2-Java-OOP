@@ -6,8 +6,10 @@ Last Modified: 4/22/20
  */
 package SummativeAssessment;
 
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class DogGenetics {
 
@@ -35,6 +37,7 @@ public class DogGenetics {
      * @return {int[]} int array where all elements sum up to 100
      */
     public static int[] breedMixNum() {
+        /*
         Random rand = new Random();
         int[] breedPercents = new int[BREED_LIMIT];
         int sumOfPercents = 0;
@@ -66,11 +69,28 @@ public class DogGenetics {
         processOutZeros(breedPercents); //sift values so no zeroes
 
         return breedPercents;
+         */
+
+        Set<Integer> breedPercents = new HashSet<>(BREED_LIMIT);
+        Random rand = new Random();
+        int left = 101;
+        int added;
+
+        while (breedPercents.size() < BREED_LIMIT) {
+            added = rand.nextInt(left);
+
+            if (added != 0 && breedPercents.add(added)) {
+                left -= added;
+            }
+        }
+
+        return breedPercents.stream()
+                .mapToInt(Number::intValue)
+                .toArray();
     }
 
     /**
-     * randomize 5 breed names and write to an array, very high chance won't
-     * return the same breed name twice
+     * randomize 5 breed names and write to an array, very high chance won't return the same breed name twice
      *
      * @return {String[]} String array of dog breeds, likely without repeats
      */
@@ -92,7 +112,7 @@ public class DogGenetics {
                         breedNameUsed[0] = true;
                         break;
                     } else {
-                        //do nothin and fall through 
+                        //do nothing and fall through
                     }
                 }
                 case 1: {
